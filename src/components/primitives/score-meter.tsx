@@ -28,7 +28,7 @@ export function ScoreMeter({ score, className, showValue = true }: ScoreMeterPro
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent_0,transparent_calc(10%-1px),rgba(11,16,32,0.9)_calc(10%-1px),rgba(11,16,32,0.9)_10%)]"
+          className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent_0,transparent_calc(10%-1px),rgba(11,16,32,0.7)_calc(10%-1px),rgba(11,16,32,0.7)_10%)]"
         />
       </div>
       {showValue ? (

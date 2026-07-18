@@ -43,7 +43,7 @@ export function Eyebrow({
       />
       {children}
       {gujarati ? (
-        <span className="font-gujarati normal-case tracking-normal text-aqua-300/90">
+        <span className="font-gujarati text-[13px] normal-case leading-none tracking-normal text-aqua-300/90">
           {gujarati}
         </span>
       ) : null}
