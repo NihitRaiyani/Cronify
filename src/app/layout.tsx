@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import {
   bricolage,
   instrumentSans,
@@ -28,7 +29,17 @@ export default function RootLayout({
       className={`${instrumentSans.variable} ${bricolage.variable} ${instrumentSerif.variable} ${notoGujarati.variable}`}
     >
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
-        {children}
+        <noscript>
+          {/* Motion entrances SSR at opacity 0; without JS, force them visible. */}
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-night-900"
+        >
+          Skip to content
+        </a>
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
