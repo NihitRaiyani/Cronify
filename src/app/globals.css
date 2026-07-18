@@ -1,26 +1,189 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Lumora landing — one permanent night theme (no light mode, no .dark toggling).
+   Deep-space navy base, indigo→cyan aurora accents, amber spark for low scores. */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b1020;
+  --foreground: #e8edf8;
+  --card: #101828;
+  --card-foreground: #e8edf8;
+  --popover: #0f1626;
+  --popover-foreground: #e8edf8;
+  --primary: #e8edf8;
+  --primary-foreground: #0b1020;
+  --secondary: #182238;
+  --secondary-foreground: #e8edf8;
+  --muted: #131b2e;
+  --muted-foreground: #97a3bc;
+  --accent: #182238;
+  --accent-foreground: #e8edf8;
+  --destructive: #f87171;
+  --border: rgba(232, 237, 248, 0.08);
+  --input: rgba(232, 237, 248, 0.12);
+  --ring: #22d3ee;
+  --chart-1: #4f46e5;
+  --chart-2: #06b6d4;
+  --chart-3: #818cf8;
+  --chart-4: #67e8f9;
+  --chart-5: #f59e0b;
+  --radius: 0.75rem;
+  --sidebar: #0f1626;
+  --sidebar-foreground: #e8edf8;
+  --sidebar-primary: #4f46e5;
+  --sidebar-primary-foreground: #e8edf8;
+  --sidebar-accent: #182238;
+  --sidebar-accent-foreground: #e8edf8;
+  --sidebar-border: rgba(232, 237, 248, 0.08);
+  --sidebar-ring: #22d3ee;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-gujarati: var(--font-gujarati);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-night-950: #070b16;
+  --color-night-900: #0b1020;
+  --color-night-800: #101828;
+  --color-night-700: #182238;
+  --color-night-600: #223052;
+  --color-ink: #e8edf8;
+  --color-ink-dim: #97a3bc;
+  --color-ink-faint: #5b6880;
+  --color-brand-300: #818cf8;
+  --color-brand-400: #6366f1;
+  --color-brand-500: #4f46e5;
+  --color-brand-600: #4338ca;
+  --color-aqua-300: #67e8f9;
+  --color-aqua-400: #22d3ee;
+  --color-aqua-500: #06b6d4;
+  --color-aqua-600: #0891b2;
+  --color-spark-300: #fcd34d;
+  --color-spark-400: #fbbf24;
+  --color-spark-500: #f59e0b;
+  --radius-card: 1.5rem;
+
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-dash: dash 3s linear infinite;
+  --animate-aurora-a: aurora-a 16s ease-in-out infinite alternate;
+  --animate-aurora-b: aurora-b 19s ease-in-out infinite alternate;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+  @keyframes aurora-a {
+    from {
+      transform: translate3d(-4%, -2%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(5%, 4%, 0) scale(1.1);
+    }
+  }
+  @keyframes aurora-b {
+    from {
+      transform: translate3d(3%, 2%, 0) scale(1.05);
+    }
+    to {
+      transform: translate3d(-5%, -3%, 0) scale(0.97);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@utility text-gradient-brand {
+  background: linear-gradient(94deg, #a5b4fc 4%, #818cf8 38%, #67e8f9 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: #e8edf8;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
