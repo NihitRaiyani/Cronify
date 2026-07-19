@@ -9,15 +9,15 @@ export const SITE = {
   name: "Lumora",
   tagline: "Websites for invisible local businesses",
   oneLiner:
-    "Find local shops with no website, score their digital presence, and generate an honest local-language demo site — before anyone is contacted.",
+    "An eight-layer automation journey: find local shops with no website, understand and score their presence, draft an honest local-language demo, then share, converse, and grow.",
   nav: [
+    { label: "The journey", href: "#how-it-works" },
     { label: "Features", href: "#features" },
-    { label: "How it works", href: "#how-it-works" },
     { label: "Showcase", href: "#showcase" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
   ],
   // Frontend-only build: CTAs are visual placeholders by design.
-  cta: { label: "Get early access", href: "#" },
-  secondaryCta: { label: "See the product", href: "#showcase" },
+  cta: { label: "See a demo", href: "#" },
+  secondaryCta: { label: "Get early access", href: "#" },
 } as const;

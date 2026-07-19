@@ -1,40 +1,40 @@
 export const HERO = {
-  eyebrow: "Demo-first outreach",
-  eyebrowGujarati: "ડેમો પહેલાં",
-  titleLine1: "The website exists",
-  titleLine2: "before the first",
-  titleAccent: "hello.",
-  sub: "Lumora finds local shops with no website, scores how visible each one is online, and generates an honest Gujarati-or-English demo site — ready to share before you ever knock.",
-  facts: [
-    { value: "6", label: "shop types" },
-    { value: "2", label: "languages" },
-    { value: "0", label: "invented claims" },
-  ],
+  titleLine1: "Eight layers between",
+  titleLine2: "invisible and online.",
+  sub: "Eight automated layers walk a shop from discovery to an honest demo site — and onward, in Gujarati or English.",
+  cta: { label: "Walk the layers", href: "#how-it-works" },
   console: {
-    title: "operator console",
-    badge: "preview",
-    city: "Surat",
-    industry: "Salons",
-    scanNote: "shops without a website · lowest presence first",
+    title: "Presence scan",
+    scope: "Surat · Salons",
+    badge: "Layer 3 · Score",
+    stats: [
+      { value: "38", label: "Shops scanned" },
+      { value: "12", label: "Score below 40" },
+      { value: "4", label: "Demos drafted" },
+    ],
+    columns: { name: "Shop", area: "Area", score: "Score" },
     rows: [
-      { label: "Salon · Athwalines", score: 18, status: "ready" },
-      { label: "Salon · Ring Road", score: 27, status: "generating" },
-      { label: "Beauty parlour · Vesu", score: 34, status: "queued" },
-      { label: "Salon · Adajan", score: 41, status: "queued" },
+      { name: "Salon", area: "Athwalines", score: 18, status: "ready" },
+      { name: "Salon", area: "Ring Road", score: 27, status: "generating" },
+      { name: "Beauty parlour", area: "Vesu", score: 34, status: "queued" },
+      { name: "Salon", area: "Adajan", score: 41, status: "queued" },
+      { name: "Salon", area: "Katargam", score: 47, status: "queued" },
+      { name: "Beauty parlour", area: "Piplod", score: 52, status: "queued" },
+      { name: "Salon", area: "Varachha", score: 58, status: "queued" },
     ],
     statusLabels: {
       ready: "demo ready",
-      generating: "generating",
+      generating: "drafting",
       queued: "queued",
     },
+    sideRail: ["Discover", "Understand", "Score", "Draft"],
     footer: "grounded from public listings — nothing invented",
+    gujarati: "નમસ્તે",
   },
-  chips: {
-    language: { gujarati: "નમસ્તે", label: "Gujarati & English" },
-    firewall: "0 invented claims",
-  },
+  ariaScene:
+    "Stylised dusk scene: layered mountain ridges under a fading sky, a lime line tracing the path of the journey.",
   ariaConsole:
-    "Illustration of the Lumora operator console: a scan for salons in Surat lists shops without websites sorted by lowest presence score, one with a demo ready to share.",
+    "Illustration of the Lumora presence console: a scan for salons in Surat lists shops without websites sorted by lowest presence score, one with a demo ready to share.",
 } as const;
 
 export type ConsoleRowStatus = (typeof HERO.console.rows)[number]["status"];

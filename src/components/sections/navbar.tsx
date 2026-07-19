@@ -9,7 +9,6 @@ import {
 import * as m from "motion/react-m";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/primitives/container";
 import { SITE } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -17,16 +16,21 @@ export function Wordmark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "font-display text-xl font-bold lowercase tracking-tight text-ink",
+        "font-serif text-[22px] font-normal lowercase tracking-tight text-ink",
         className,
       )}
     >
       lumora
-      <span className="text-gradient-brand">.</span>
+      <span className="text-lime">.</span>
     </span>
   );
 }
 
+/**
+ * Measured Solidroad navbar: transparent strip over the hero photo, cream
+ * 14px links, ghost pill + solid cream pill on the right, 66px tall.
+ * Scrolled state gains the dark blurred backdrop (body surface #0E0D14).
+ */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -38,13 +42,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
+        "theme-hero fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
         solid
-          ? "border-b border-white/[0.06] bg-night-900/85 backdrop-blur-xl"
+          ? "border-b border-white/[0.08] bg-[#0E0D14]/85 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+      <div className="mx-auto flex h-[66px] w-full max-w-[1600px] items-center justify-between gap-4 px-5 sm:px-10 lg:px-14">
         <a
           href="#main"
           aria-label="Lumora — back to start"
@@ -53,25 +57,33 @@ export function Navbar() {
           <Wordmark />
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-          {SITE.nav.map((item) => (
+        <div className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Primary" className="flex items-center gap-1">
+            {SITE.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-full px-3.5 py-2 font-sans text-sm text-ink/90 transition-colors hover:text-ink"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2.5">
             <a
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3.5 py-2 text-sm text-ink-dim transition-colors hover:text-ink"
+              href={SITE.secondaryCta.href}
+              className="inline-flex h-8 items-center rounded-full border border-ink/40 px-3.5 font-sans text-[13px] text-ink transition-colors hover:border-ink/70"
             >
-              {item.label}
+              {SITE.secondaryCta.label}
             </a>
-          ))}
-        </nav>
-
-        <div className="hidden lg:block">
-          <Button
-            asChild
-            className="h-10 rounded-full bg-ink px-5 text-sm font-semibold text-night-900 hover:bg-white"
-          >
-            <a href={SITE.cta.href}>{SITE.cta.label}</a>
-          </Button>
+            <a
+              href={SITE.cta.href}
+              className="inline-flex h-8 items-center gap-1.5 rounded-full bg-[#FBF7EB] px-3.5 font-sans text-[13px] font-medium text-[#2D2C29] transition-colors hover:bg-white"
+            >
+              {SITE.cta.label}
+              <span aria-hidden>→</span>
+            </a>
+          </div>
         </div>
 
         <Button
@@ -85,38 +97,37 @@ export function Navbar() {
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </Button>
-      </Container>
+      </div>
 
       <AnimatePresence>
         {open ? (
           <m.div
             id="mobile-nav"
-            className="overflow-hidden border-t border-white/[0.06] lg:hidden"
+            className="overflow-hidden border-t border-white/[0.08] lg:hidden"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Container className="flex flex-col gap-1 py-4">
+            <div className="flex flex-col gap-1 px-5 py-4 sm:px-10">
               {SITE.nav.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-2 py-2.5 text-base text-ink-dim transition-colors hover:text-ink"
+                  className="rounded-lg px-2 py-2.5 font-sans text-base text-ink/80 transition-colors hover:text-ink"
                 >
                   {item.label}
                 </a>
               ))}
-              <Button
-                asChild
-                className="mt-2 h-11 rounded-full bg-ink text-sm font-semibold text-night-900 hover:bg-white"
+              <a
+                href={SITE.cta.href}
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex h-11 items-center justify-center rounded-full bg-[#FBF7EB] font-sans text-sm font-medium text-[#2D2C29]"
               >
-                <a href={SITE.cta.href} onClick={() => setOpen(false)}>
-                  {SITE.cta.label}
-                </a>
-              </Button>
-            </Container>
+                {SITE.cta.label} <span aria-hidden>&nbsp;→</span>
+              </a>
+            </div>
           </m.div>
         ) : null}
       </AnimatePresence>
