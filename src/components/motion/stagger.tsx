@@ -11,6 +11,8 @@ type StaggerProps = {
   step?: number;
   /** false = play on mount (above-the-fold); true = play when scrolled into view */
   inView?: boolean;
+  /** viewport margin for the whileInView trigger (measured per section) */
+  margin?: string;
 };
 
 /**
@@ -23,9 +25,10 @@ export function Stagger({
   delay = 0,
   step = 0.08,
   inView = true,
+  margin = "-80px",
 }: StaggerProps) {
   const viewProps = inView
-    ? { whileInView: "show" as const, viewport: { once: true, margin: "-80px" } }
+    ? { whileInView: "show" as const, viewport: { once: true, margin } }
     : { animate: "show" as const };
   return (
     <m.div
@@ -48,16 +51,25 @@ type StaggerItemProps = {
   className?: string;
   y?: number;
   x?: number;
+  duration?: number;
+  ease?: readonly [number, number, number, number];
 };
 
-export function StaggerItem({ children, className, y = 24, x = 0 }: StaggerItemProps) {
+export function StaggerItem({
+  children,
+  className,
+  y = 24,
+  x = 0,
+  duration = 0.7,
+  ease = EASE,
+}: StaggerItemProps) {
   return (
     <m.div
       data-reveal
       className={className}
       variants={{
         hidden: { opacity: 0, y, x },
-        show: { opacity: 1, y: 0, x: 0, transition: { duration: 0.7, ease: EASE } },
+        show: { opacity: 1, y: 0, x: 0, transition: { duration, ease: [...ease] } },
       }}
     >
       {children}

@@ -66,7 +66,7 @@ export default function RootLayout({
         />
         <noscript>
           {/* Motion entrances SSR at opacity 0; without JS, force them visible. */}
-          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important;filter:none !important}`}</style>
         </noscript>
         <a
           href="#main"

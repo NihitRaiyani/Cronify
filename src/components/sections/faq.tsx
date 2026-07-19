@@ -1,4 +1,3 @@
-import { Reveal } from "@/components/motion/reveal";
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
 import {
@@ -25,7 +24,8 @@ export function Faq() {
           title={FAQ.title}
           lede={FAQ.lede}
         />
-        <Reveal className="mx-auto mt-[60px] max-w-[768px]">
+        {/* measured: FAQ items are static on scroll — interaction only */}
+        <div className="mx-auto mt-[60px] max-w-[768px]">
           <Accordion
             type="single"
             collapsible
@@ -37,7 +37,7 @@ export function Faq() {
                 value={item.key}
                 className="rounded-none border-b border-edge last:border-b-0"
               >
-                <AccordionTrigger className="gap-6 rounded-none border-0 py-6 font-display text-lg font-medium leading-snug tracking-tight text-ink hover:no-underline **:data-[slot=accordion-trigger-icon]:size-5 **:data-[slot=accordion-trigger-icon]:text-ink">
+                <AccordionTrigger className="gap-6 rounded-none border-0 py-9 font-display text-lg font-semibold leading-snug tracking-tight text-ink hover:no-underline **:data-[slot=accordion-trigger-icon]:size-5 **:data-[slot=accordion-trigger-icon]:text-ink">
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="max-w-[42rem] pb-6 font-sans text-base leading-[26px] text-white/75">
@@ -46,7 +46,7 @@ export function Faq() {
               </AccordionItem>
             ))}
           </Accordion>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

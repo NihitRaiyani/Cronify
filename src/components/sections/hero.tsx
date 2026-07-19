@@ -1,87 +1,22 @@
+"use client";
+
+import * as m from "motion/react-m";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { HERO } from "@/content/hero";
 import { HeroVisual } from "./hero-visual";
 
-/**
- * Measured Solidroad hero: full-viewport photo-dark scene (ours is a layered
- * SVG dusk ridge, not their photo), cream serif 40px headline, 14px sub, lime
- * pill CTA, white dashboard card bleeding off the right edge and sliding
- * BEHIND the sunlit near ridge, lime journey line emerging below the card,
- * bottom fade into the body surface (#0E0D14) as the seam.
- */
-function SkyAndFarRidges() {
-  return (
-    <svg
-      aria-hidden
-      className="absolute inset-0 h-full w-full"
-      viewBox="0 0 1440 900"
-      preserveAspectRatio="xMidYMax slice"
-    >
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#42566E" />
-          <stop offset="0.34" stopColor="#3A4D63" />
-          <stop offset="0.55" stopColor="#7A6650" />
-          <stop offset="0.7" stopColor="#4A3A2E" />
-          <stop offset="1" stopColor="#241C18" />
-        </linearGradient>
-        <linearGradient id="ridge-far" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#6E5F49" />
-          <stop offset="1" stopColor="#3A3128" />
-        </linearGradient>
-        <linearGradient id="ridge-mid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#54432F" />
-          <stop offset="1" stopColor="#2A2119" />
-        </linearGradient>
-      </defs>
-      <rect width="1440" height="900" fill="url(#sky)" />
-      <path
-        d="M0 560 L180 480 L340 540 L520 430 L700 520 L880 440 L1060 530 L1240 460 L1440 540 L1440 900 L0 900 Z"
-        fill="url(#ridge-far)"
-        opacity="0.9"
-      />
-      <path
-        d="M0 640 L160 570 L330 640 L540 540 L760 640 L950 550 L1150 660 L1330 580 L1440 630 L1440 900 L0 900 Z"
-        fill="url(#ridge-mid)"
-        opacity="0.95"
-      />
-    </svg>
-  );
-}
+/** Measured Solidroad entrance easing — shared by every hero element. */
+const HERO_EASE = [0.6, 0, 0.05, 1] as const;
 
-/** Near ridge + journey line — rendered ABOVE the dashboard card (measured
- *  composition: the sunlit foreground peak overlaps the card's bottom edge). */
-function NearRidge() {
+/** Bold lime journey line traced over the foreground peak (measured
+ *  signature: ~500px squiggle crossing the sunlit ridge and the card's
+ *  lower third; reframes with the cutout). */
+function JourneyLine({ className }: { className?: string }) {
   return (
-    <svg
-      aria-hidden
-      className="pointer-events-none absolute inset-0 h-full w-full"
-      viewBox="0 0 1440 900"
-      preserveAspectRatio="xMidYMax slice"
-    >
-      <defs>
-        <linearGradient id="ridge-near-lit" x1="0.1" y1="0" x2="0.9" y2="1">
-          <stop offset="0" stopColor="#33281D" />
-          <stop offset="0.55" stopColor="#7A5533" />
-          <stop offset="0.75" stopColor="#A06C42" />
-          <stop offset="1" stopColor="#1B1512" />
-        </linearGradient>
-      </defs>
+    <svg aria-hidden viewBox="0 0 560 300" fill="none" className={className}>
       <path
-        d="M0 780 L240 690 L460 770 L680 660 L900 780 L1120 640 L1310 770 L1440 700 L1440 900 L0 900 Z"
-        fill="url(#ridge-near-lit)"
-      />
-      {/* shadow flank on the big foreground peak */}
-      <path
-        d="M900 780 L1120 640 L1190 690 L1000 800 Z"
-        fill="#241B14"
-        opacity="0.55"
-      />
-      {/* the journey line, tracing the lit ridge below the card */}
-      <path
-        d="M990 760 C 1090 690, 1180 800, 1290 735 C 1370 690, 1420 720, 1460 695"
-        fill="none"
-        stroke="#DBF400"
+        d="M16 64 C 110 18, 156 208, 268 158 C 366 114, 396 262, 508 212 C 536 199, 552 202, 560 198"
+        stroke="var(--accent-lime)"
         strokeWidth="6.5"
         strokeLinecap="round"
       />
@@ -89,6 +24,14 @@ function NearRidge() {
   );
 }
 
+/**
+ * Measured Solidroad hero, rebuilt with our own dusk photography:
+ * 100vh photo scene (BG panorama static from first paint), left scrim at 0.5,
+ * cream Fraunces 40/40 h1 at x=104 with 32px gaps down the stack, lime pill
+ * CTA, white console card top-aligned with the h1 and bleeding 243px off the
+ * right edge, sunlit foreground peak cutout + lime journey line painted OVER
+ * the card's lower third, hard-cut seam into the body surface.
+ */
 export function Hero() {
   return (
     <section
@@ -96,60 +39,96 @@ export function Hero() {
       className="theme-hero relative overflow-hidden bg-[#201918]"
       aria-label={HERO.ariaScene}
     >
-      <SkyAndFarRidges />
-      {/* measured 40% black overlay (scene is built darker than their photo,
-          so a lighter veil lands at the same measured luminance) */}
-      <div aria-hidden className="absolute inset-0 bg-black/30" />
+      {/* BG dusk panorama — static from first paint (measured: no entrance).
+          Plain <img>: sizes are pre-generated webp, the optimizer adds risk only. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/hero-dusk-panorama-1920.webp"
+        srcSet="/hero-dusk-panorama-1024.webp 1024w, /hero-dusk-panorama-1920.webp 1920w, /hero-dusk-panorama-2880.webp 2880w"
+        sizes="100vw"
+        alt=""
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+        decoding="async"
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {/* measured left scrim: 270° transparent→black, opacity 0.5, left half */}
+      <div
+        aria-hidden
+        className="absolute inset-y-0 left-0 w-1/2 opacity-50"
+        style={{ background: "linear-gradient(270deg, rgba(0,0,0,0) 0%, #000 100%)" }}
+      />
 
-      <div className="relative mx-auto min-h-svh w-full max-w-[1600px] px-5 pb-40 pt-[26vh] sm:px-10 lg:h-svh lg:max-h-[980px] lg:min-h-[720px] lg:px-20 lg:pb-0 lg:pt-[205px]">
-        {/* dashboard card — bleeds off the right edge, behind the near ridge */}
-        <Stagger inView={false} delay={0.25}>
-          <StaggerItem
-            y={36}
-            className="mt-14 lg:absolute lg:right-[-140px] lg:top-[175px] lg:z-10 lg:mt-0"
-          >
-            <HeroVisual className="max-w-full lg:max-w-none" />
-          </StaggerItem>
-        </Stagger>
-
+      <div className="relative mx-auto min-h-svh w-full max-w-[1600px] px-5 pb-40 pt-[26vh] sm:px-10 lg:h-svh lg:max-h-[980px] lg:min-h-[720px] lg:px-20 lg:pb-0 lg:pt-[200px]">
+        {/* text column — measured x=104 (80 rail + 24), max-w 400, nav→h1 133,
+            32px gaps h1→sub→CTA, staggers 0/50/100ms at 600ms */}
         <Stagger
           inView={false}
-          className="relative z-30 max-w-md lg:ml-[110px]"
+          step={0.05}
+          className="relative z-30 max-w-[400px] lg:ml-6"
         >
-          <StaggerItem>
-            <h1 className="font-serif text-[34px] font-light leading-[1.02] tracking-[-0.02em] text-ink sm:text-[40px]">
+          <StaggerItem duration={0.6} ease={HERO_EASE}>
+            <h1 className="font-serif text-[34px] font-light leading-none tracking-[-0.02em] text-ink sm:text-[40px]">
               {HERO.titleLine1}
               <br />
               {HERO.titleLine2}
             </h1>
           </StaggerItem>
-          <StaggerItem>
-            <p className="mt-6 max-w-[380px] font-sans text-sm leading-[1.45] text-ink-muted">
+          <StaggerItem duration={0.6} ease={HERO_EASE}>
+            <p className="mt-8 max-w-[340px] font-sans text-sm leading-[1.4] text-ink-muted">
               {HERO.sub}
             </p>
           </StaggerItem>
-          <StaggerItem>
+          <StaggerItem duration={0.6} ease={HERO_EASE}>
             <a
               href={HERO.cta.href}
-              className="mt-8 inline-flex h-10 items-center gap-2 rounded-full bg-lime px-5 font-sans text-sm font-medium text-ink-inverse transition-transform duration-200 hover:-translate-y-0.5"
+              className="mt-8 inline-flex h-10 items-center gap-2 rounded-full bg-lime px-5 font-sans text-sm text-ink-inverse transition-transform duration-200 hover:-translate-y-0.5"
             >
               {HERO.cta.label}
               <span aria-hidden>→</span>
             </a>
           </StaggerItem>
         </Stagger>
+
+        {/* console card — measured (≈627, 200): top-aligned with the h1,
+            bleeding 243px off-right; 40px rise + fade over 1.2s, lands last */}
+        <m.div
+          data-reveal
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [...HERO_EASE] }}
+          className="mt-14 lg:absolute lg:right-[-243px] lg:top-[200px] lg:z-10 lg:mt-0"
+        >
+          <HeroVisual className="max-w-full lg:max-w-none" />
+        </m.div>
       </div>
 
-      {/* foreground ridge over the card */}
-      <div aria-hidden className="absolute inset-0 z-20 hidden lg:block">
-        <NearRidge />
-      </div>
-
-      {/* seam: fade into the body surface, above everything decorative */}
-      <div
+      {/* FG peak cutout + journey line — 24px rise, NO fade (measured),
+          settles with the card so the card slides up behind the ridge */}
+      <m.div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 z-20 h-44 bg-gradient-to-b from-transparent to-[#0E0D14]"
-      />
+        data-reveal
+        initial={{ y: 24 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1.2, ease: [...HERO_EASE] }}
+        className="pointer-events-none absolute inset-0 z-20 hidden lg:block"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero-peak-cutout-2200.webp"
+          srcSet="/hero-peak-cutout-1280.webp 1280w, /hero-peak-cutout-2200.webp 2200w"
+          sizes="62vw"
+          alt=""
+          width={2200}
+          height={815}
+          decoding="async"
+          draggable={false}
+          className="absolute bottom-0 right-0 w-[min(62vw,1100px)]"
+        />
+        <JourneyLine className="absolute bottom-10 right-4 w-[560px]" />
+      </m.div>
     </section>
   );
 }

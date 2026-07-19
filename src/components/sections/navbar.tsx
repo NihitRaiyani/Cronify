@@ -35,7 +35,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 8));
+  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 75));
 
   const solid = scrolled || open;
 
@@ -45,7 +45,7 @@ export function Navbar() {
         "theme-hero fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
         solid
           ? "border-b border-white/[0.08] bg-[#0E0D14]/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
+          : "border-b border-transparent bg-black/[0.02] backdrop-blur-[8px]",
       )}
     >
       <div className="mx-auto flex h-[66px] w-full max-w-[1600px] items-center justify-between gap-4 px-5 sm:px-10 lg:px-14">
@@ -57,28 +57,28 @@ export function Navbar() {
           <Wordmark />
         </a>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-16 lg:flex">
           <nav aria-label="Primary" className="flex items-center gap-1">
             {SITE.nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3.5 py-2 font-sans text-sm text-ink/90 transition-colors hover:text-ink"
+                className="rounded-full px-3.5 py-2 font-serif text-sm text-ink/90 transition-colors hover:text-ink"
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <a
               href={SITE.secondaryCta.href}
-              className="inline-flex h-8 items-center rounded-full border border-ink/40 px-3.5 font-sans text-[13px] text-ink transition-colors hover:border-ink/70"
+              className="inline-flex h-[34px] items-center rounded-full border border-ink/40 px-3.5 font-sans text-xs text-ink transition-colors hover:border-ink/70"
             >
               {SITE.secondaryCta.label}
             </a>
             <a
               href={SITE.cta.href}
-              className="inline-flex h-8 items-center gap-1.5 rounded-full bg-[#FBF7EB] px-3.5 font-sans text-[13px] font-medium text-[#2D2C29] transition-colors hover:bg-white"
+              className="inline-flex h-[34px] items-center gap-1.5 rounded-full bg-[#FBF7EB] px-3.5 font-sans text-xs text-[#2D2C29] transition-colors hover:bg-white"
             >
               {SITE.cta.label}
               <span aria-hidden>→</span>

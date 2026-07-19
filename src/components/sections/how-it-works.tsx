@@ -10,7 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { ScrubScale } from "@/components/motion/scrub-scale";
 import { AButton } from "@/components/primitives/a-button";
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
@@ -116,19 +116,40 @@ export function HowItWorks() {
       className="relative overflow-x-clip pt-[140px] scroll-mt-24"
     >
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow={HOW_IT_WORKS.eyebrow}
-            eyebrowGujarati={HOW_IT_WORKS.eyebrowGujarati}
-            title={HOW_IT_WORKS.title}
-            lede={HOW_IT_WORKS.lede}
-          />
-        </Reveal>
+        <SectionHeading
+          eyebrow={HOW_IT_WORKS.eyebrow}
+          eyebrowGujarati={HOW_IT_WORKS.eyebrowGujarati}
+          title={HOW_IT_WORKS.title}
+          lede={HOW_IT_WORKS.lede}
+        />
 
         <div className="mt-[60px] grid border border-edge lg:grid-cols-[0.85fr_1.15fr]">
-          {/* Left: deep-green journey panel */}
-          <Reveal className="relative min-h-[520px] bg-surface-deep p-8 lg:min-h-[640px]">
-            <h3 className="relative z-10 whitespace-pre-line font-display text-2xl font-medium leading-snug text-ink">
+          {/* Left: photographic journey panel — our own dusk photography under
+              a deep-green wash, scrubbed 1.3→1 like the ref's process image */}
+          <Reveal className="relative min-h-[520px] overflow-hidden bg-surface-deep lg:min-h-[640px]">
+            <ScrubScale className="absolute inset-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-dusk-panorama-1920.webp"
+                alt=""
+                width={1920}
+                height={1080}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                className="h-full w-full object-cover"
+                style={{ objectPosition: "70% 35%" }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[#002010]/60 mix-blend-multiply"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-[#001a0d]/85 via-transparent to-[#001a0d]/45"
+              />
+            </ScrubScale>
+            <h3 className="relative z-10 whitespace-pre-line p-8 font-display text-2xl font-medium leading-snug text-ink">
               {HOW_IT_WORKS.panel.heading}
             </h3>
             <JourneyLine />
@@ -140,15 +161,16 @@ export function HowItWorks() {
             </AButton>
           </Reveal>
 
-          {/* Right: 8 layer cells with hairline dividers */}
-          <Stagger className="grid grid-cols-1 border-t border-edge sm:grid-cols-2 lg:border-l lg:border-t-0">
+          {/* Right: 8 layer cells with hairline dividers — measured: cells of
+              a visible row blur-rise together, lower rows on their own entry */}
+          <div className="grid grid-cols-1 border-t border-edge sm:grid-cols-2 lg:border-l lg:border-t-0">
             {HOW_IT_WORKS.layers.map((layer, i) => {
               const Icon = ICONS[layer.key];
               return (
-                <StaggerItem
+                <Reveal
                   key={layer.key}
                   className={cn(
-                    "border-edge p-6 lg:p-8",
+                    "border-edge p-7 lg:p-10",
                     i > 0 && "border-t",
                     i < 2 && "sm:border-t-0",
                     i % 2 === 1 && "sm:border-l",
@@ -166,10 +188,10 @@ export function HowItWorks() {
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-muted">
                     {layer.body}
                   </p>
-                </StaggerItem>
+                </Reveal>
               );
             })}
-          </Stagger>
+          </div>
         </div>
       </Container>
     </section>

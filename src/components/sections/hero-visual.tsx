@@ -20,7 +20,7 @@ export function HeroVisual({ className }: { className?: string }) {
       role="img"
       aria-label={HERO.ariaConsole}
       className={cn(
-        "w-[900px] overflow-hidden rounded-t-xl bg-white text-[#322F25] shadow-[0_40px_120px_-40px_rgba(0,0,0,0.6)]",
+        "w-[1050px] overflow-hidden rounded-t-xl bg-white text-[#322F25] shadow-[0_40px_120px_-40px_rgba(0,0,0,0.6)]",
         className,
       )}
     >

@@ -2,26 +2,15 @@ export const SHOWCASE = {
   eyebrow: "Showcase",
   eyebrowGujarati: "નમૂનો",
   title: "A demo in the shop's own language",
-  lede: "A one-page draft written from public facts, in Gujarati or English — recreated here as an illustration; no real shop is shown.",
+  lede: "A one-page draft written from public facts, in Gujarati or English — shown here as a live capture of a generated demo.",
   overlay:
     "A draft page the owner can read without switching languages — hidden wherever a fact is unknown.",
   cta: "See a demo",
-  mockAria:
-    "Illustration of a generated demo page for a small shop: Gujarati shop name in the header, a hero block, three fact-backed sections with an indicative rupee range, and one dashed section held back because its fact is unknown.",
+  mockAlt:
+    "Capture of a live generated demo page for a salon: headline in the shop's own voice, booking and services actions, and an arched storefront photo.",
   mock: {
     address: "demo draft · for review",
     lang: "ગુ / EN",
-    name: "શ્રી ગણેશ સ્ટોર",
-    nameSub: "Kirana · Rajkot",
-    heroTitle: "તમારી દુકાન, તમારી ભાષામાં",
-    heroSub: "draft from seven public signals",
-    heroCta: "મુલાકાત લો",
-    strips: [
-      { label: "સેવાઓ", sub: "from the listing", chip: "₹40–60 · અંદાજિત" },
-      { label: "સમય", sub: "hours as published" },
-      { label: "સરનામું", sub: "public map listings" },
-    ],
-    hidden: "hidden — fact unknown",
   },
   points: [
     {

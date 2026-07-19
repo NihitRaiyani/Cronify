@@ -25,15 +25,15 @@ export function Pricing() {
       className="relative scroll-mt-24 overflow-x-clip pt-[140px]"
     >
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow={PRICING.eyebrow}
-            eyebrowGujarati={PRICING.eyebrowGujarati}
-            title={PRICING.title}
-            lede={PRICING.lede}
-          />
+        <SectionHeading
+          eyebrow={PRICING.eyebrow}
+          eyebrowGujarati={PRICING.eyebrowGujarati}
+          title={PRICING.title}
+          lede={PRICING.lede}
+        />
 
-          {/* Billing toggle */}
+        {/* Billing toggle — blur-rise with the header (measured ~86% vh) */}
+        <Reveal>
           <div className="mt-8 flex items-center justify-center gap-4">
             <button
               type="button"
@@ -56,7 +56,7 @@ export function Pricing() {
               <span
                 aria-hidden
                 className={cn(
-                  "absolute top-1/2 size-5 -translate-y-1/2 rounded-full bg-lime transition-[left] duration-200",
+                  "absolute top-1/2 size-5 -translate-y-1/2 rounded-full bg-lime transition-[left] duration-[450ms]",
                   yearly ? "left-[26px]" : "left-1",
                 )}
               />
@@ -75,14 +75,19 @@ export function Pricing() {
         </Reveal>
 
         {/* Plan columns */}
-        <Stagger className="mt-12 grid border border-edge lg:grid-cols-3 lg:divide-x lg:divide-edge max-lg:divide-y max-lg:divide-edge">
+        {/* measured: the 3 cards blur-rise together (Δ<50ms) at ~77–80% vh */}
+        <Stagger
+          step={0}
+          margin="0px 0px -21% 0px"
+          className="mt-12 grid border border-edge lg:grid-cols-3 lg:divide-x lg:divide-edge max-lg:divide-y max-lg:divide-edge"
+        >
           {PRICING.plans.map((plan, i) => {
             const Icon = PLAN_ICONS[plan.icon];
             const featured = i === 1;
             return (
               <StaggerItem
                 key={plan.label}
-                className={cn("flex flex-col p-8", featured && "bg-surface-deep")}
+                className={cn("flex flex-col px-8 py-12", featured && "bg-surface-deep")}
               >
                 <div className="flex items-center gap-4">
                   <span className="grid size-9 shrink-0 place-items-center rounded-md bg-tile">
@@ -108,11 +113,11 @@ export function Pricing() {
                   {plan.spec}
                 </p>
 
-                <AButton href="#" className="mt-8 w-full">
+                <AButton href="#" className="mt-10 w-full">
                   {plan.cta}
                 </AButton>
 
-                <ul className="mt-8 space-y-4">
+                <ul className="mt-10 space-y-4">
                   {plan.features.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-check">

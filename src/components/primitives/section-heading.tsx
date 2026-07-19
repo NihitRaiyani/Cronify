@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/reveal";
+import { WordReveal } from "@/components/motion/word-reveal";
 import { cn } from "@/lib/utils";
 
 /** Serif accent — kept for the hero register (Fraunces). */
@@ -53,7 +55,9 @@ type SectionHeadingProps = {
 };
 
 /** Measured Agentify heading block: centered Inter Tight 48/57.6 w600 white,
- *  16/24 muted lede below. */
+ *  16/24 muted lede below. Motion lives here (per animations.md): string
+ *  titles get the scrubbed word-reveal; eyebrow + lede blur-rise. Sections
+ *  must NOT wrap this block in another Reveal. */
 export function SectionHeading({
   eyebrow,
   eyebrowGujarati,
@@ -70,14 +74,20 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow ? <Eyebrow gujarati={eyebrowGujarati}>{eyebrow}</Eyebrow> : null}
+      {eyebrow ? (
+        <Reveal>
+          <Eyebrow gujarati={eyebrowGujarati}>{eyebrow}</Eyebrow>
+        </Reveal>
+      ) : null}
       <h2 className="max-w-[24ch] font-display text-[32px] font-semibold leading-[1.2] text-ink sm:text-[40px] lg:text-[48px]">
-        {title}
+        {typeof title === "string" ? <WordReveal text={title} /> : title}
       </h2>
       {lede ? (
-        <p className="max-w-xl font-sans text-base leading-6 text-ink-muted">
-          {lede}
-        </p>
+        <Reveal>
+          <p className="max-w-xl font-sans text-base leading-6 text-ink-muted">
+            {lede}
+          </p>
+        </Reveal>
       ) : null}
     </div>
   );

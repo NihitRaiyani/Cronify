@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { WordReveal } from "@/components/motion/word-reveal";
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
 import { INTEGRATIONS, type IntegrationTileKey } from "@/content/integrations";
@@ -78,10 +79,10 @@ function Tile({
   const Icon = ICONS[tileKey];
   return (
     <>
-      <span className="grid size-14 place-items-center rounded-lg border border-edge bg-surface-deep">
+      <span className="grid size-14 place-items-center rounded-lg border border-[#1e3b2c] bg-gradient-to-b from-[#0d2419] to-[#04150d] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_-6px_12px_rgba(0,0,0,0.45),0_10px_24px_rgba(0,0,0,0.5)]">
         <Icon aria-hidden className="size-6 text-lime" strokeWidth={1.75} />
       </span>
-      <span className="text-center text-xs leading-tight text-ink-muted">
+      <span className="text-center text-[13px] leading-tight text-ink-muted">
         {label}
       </span>
     </>
@@ -95,24 +96,33 @@ export function Integrations() {
       className="relative overflow-x-clip pt-[140px]"
     >
       <Container>
-        <Reveal>
-          <SectionHeading
-            eyebrow={INTEGRATIONS.eyebrow}
-            eyebrowGujarati={INTEGRATIONS.eyebrowGujarati}
-            title={
-              <>
-                {INTEGRATIONS.titleLines[0]}
-                <br />
-                {INTEGRATIONS.titleLines[1]}
-              </>
-            }
-            lede={INTEGRATIONS.lede}
-          />
-        </Reveal>
+        <SectionHeading
+          eyebrow={INTEGRATIONS.eyebrow}
+          eyebrowGujarati={INTEGRATIONS.eyebrowGujarati}
+          title={
+            <>
+              <WordReveal text={INTEGRATIONS.titleLines[0]} />
+              <br />
+              <WordReveal text={INTEGRATIONS.titleLines[1]} />
+            </>
+          }
+          lede={INTEGRATIONS.lede}
+        />
 
-        {/* Desktop: radial node web */}
-        <Stagger className="relative mx-auto mt-[60px] hidden aspect-square w-full max-w-[640px] lg:block">
-          <StaggerItem y={0} className="absolute inset-0">
+        {/* Desktop: radial node web over the ref's faint cell-grid texture */}
+        <div className="relative mt-[60px] hidden lg:block">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-x-24 inset-y-0"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 80px), repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 80px)",
+              maskImage:
+                "radial-gradient(75% 75% at 50% 50%, black 55%, transparent 100%)",
+            }}
+          />
+          <div className="relative mx-auto aspect-square w-full max-w-[640px]">
+          <div className="absolute inset-0">
             <svg
               aria-hidden="true"
               viewBox="0 0 640 640"
@@ -150,26 +160,28 @@ export function Integrations() {
                 />
               ))}
             </svg>
-          </StaggerItem>
+          </div>
 
+          {/* measured: per-tile blur-rise, no orchestrated stagger */}
           {INTEGRATIONS.tiles.map((tile, i) => (
             <div
               key={tile.key}
               style={{ left: NODE_POS[i][0], top: NODE_POS[i][1] }}
               className="absolute -translate-x-1/2 -translate-y-7"
             >
-              <StaggerItem className="flex flex-col items-center gap-2 whitespace-nowrap">
+              <Reveal className="flex flex-col items-center gap-2 whitespace-nowrap">
                 <Tile tileKey={tile.key} label={tile.label} />
-              </StaggerItem>
+              </Reveal>
             </div>
           ))}
 
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <StaggerItem y={0}>
+            <Reveal y={0}>
               <Hub />
-            </StaggerItem>
+            </Reveal>
           </div>
-        </Stagger>
+          </div>
+        </div>
 
         {/* Below lg: hub + simple 4×2 tile grid, no lines */}
         <Stagger className="mt-[60px] lg:hidden">

@@ -41,7 +41,7 @@ export function BuiltFor() {
             return (
               <span
                 key={v.key}
-                className="flex h-[100px] w-[253px] shrink-0 items-center justify-center gap-3 border-l border-edge text-white/40"
+                className="flex h-[100px] w-[253px] shrink-0 items-center justify-center gap-3 border-l border-edge text-white/55"
               >
                 <Icon aria-hidden className="size-6" />
                 <span className="font-display text-lg font-semibold">

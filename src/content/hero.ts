@@ -32,7 +32,7 @@ export const HERO = {
     gujarati: "નમસ્તે",
   },
   ariaScene:
-    "Stylised dusk scene: layered mountain ridges under a fading sky, a lime line tracing the path of the journey.",
+    "Dusk mountain scene: photographed ridges under a fading sky, a sunlit peak in the foreground, a lime line tracing the path of the journey.",
   ariaConsole:
     "Illustration of the Lumora presence console: a scan for salons in Surat lists shops without websites sorted by lowest presence score, one with a demo ready to share.",
 } as const;

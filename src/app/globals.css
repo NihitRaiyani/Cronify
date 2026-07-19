@@ -127,7 +127,8 @@
 }
 
 @theme {
-  --animate-marquee: marquee 30s linear infinite;
+  /* measured ref marquee speed: ~85px/s (half-track 1518px ÷ 85 ≈ 18s) */
+  --animate-marquee: marquee 18s linear infinite;
   --animate-dash: dash 3s linear infinite;
 
   @keyframes marquee {
@@ -163,6 +164,28 @@
     border: 1px solid rgba(255, 255, 255, 0.9);
     pointer-events: none;
   }
+}
+
+/* Agentify torn-paper edge on lime CTA chips: subtle irregular tear down the
+   right edge of the fill (applied to an inner fill layer so the offset frame
+   pseudo-element is not clipped with it). */
+@utility torn-edge {
+  clip-path: polygon(
+    0 0,
+    99.2% 0,
+    100% 7%,
+    99% 16%,
+    99.8% 26%,
+    98.8% 36%,
+    100% 46%,
+    99.1% 57%,
+    99.9% 67%,
+    98.9% 77%,
+    100% 87%,
+    99.3% 95%,
+    98.7% 100%,
+    0 100%
+  );
 }
 
 /* Agentify striped panel: vertical lime bands, ~40px pitch. */
@@ -213,6 +236,7 @@
     [data-reveal] {
       opacity: 1 !important;
       transform: none !important;
+      filter: none !important;
     }
   }
 }
