@@ -1,8 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
-import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,6 +13,10 @@ type StaggerProps = {
   inView?: boolean;
 };
 
+/**
+ * Staggered entrance group. Like Reveal, it always renders motion divs — the
+ * reduced-motion/no-JS safety net is the CSS rule on [data-reveal].
+ */
 export function Stagger({
   children,
   className,
@@ -22,10 +24,6 @@ export function Stagger({
   step = 0.08,
   inView = true,
 }: StaggerProps) {
-  const reduce = useReducedMotion();
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
   const viewProps = inView
     ? { whileInView: "show" as const, viewport: { once: true, margin: "-80px" } }
     : { animate: "show" as const };
@@ -53,14 +51,10 @@ type StaggerItemProps = {
 };
 
 export function StaggerItem({ children, className, y = 24, x = 0 }: StaggerItemProps) {
-  const reduce = useReducedMotion();
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
   return (
     <m.div
       data-reveal
-      className={cn(className)}
+      className={className}
       variants={{
         hidden: { opacity: 0, y, x },
         show: { opacity: 1, y: 0, x: 0, transition: { duration: 0.7, ease: EASE } },

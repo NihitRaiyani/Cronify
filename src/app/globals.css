@@ -185,5 +185,11 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+    /* Entrance wrappers SSR at opacity 0; this outranks any inline style the
+       motion runtime leaves behind, whatever the hydration timing. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }

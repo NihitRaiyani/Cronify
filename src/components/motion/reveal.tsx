@@ -1,6 +1,5 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
 import * as m from "motion/react-m";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -13,15 +12,12 @@ type RevealProps = {
 };
 
 /**
- * Scroll-entrance wrapper. Under prefers-reduced-motion it renders a plain div
- * so content can never be stuck at opacity 0. A <noscript> rule in the root
- * layout un-hides [data-reveal] elements for no-JS visitors.
+ * Scroll-entrance wrapper. Always renders the motion div (branching the DOM
+ * shape on useReducedMotion is hydration-race-unstable); reduced-motion and
+ * no-JS visitors are covered by CSS: a prefers-reduced-motion rule and a
+ * <noscript> rule in the root layout both force [data-reveal] visible.
  */
 export function Reveal({ children, className, delay = 0, y = 26 }: RevealProps) {
-  const reduce = useReducedMotion();
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
   return (
     <m.div
       data-reveal

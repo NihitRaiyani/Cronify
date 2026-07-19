@@ -13,6 +13,10 @@ const DESCRIPTION =
   "Lumora finds local shops with no website, scores their digital presence, and generates an honest Gujarati-or-English demo site — ready before the first conversation.";
 
 export const metadata: Metadata = {
+  // RFC-2606 placeholder — swap for the real domain at deploy time. Without a
+  // base, Next absolutizes og/twitter image URLs against localhost:3000, which
+  // the verify harness rightly rejects as a baked foreign origin.
+  metadataBase: new URL("https://lumora.invalid"),
   title: TITLE,
   description: DESCRIPTION,
   openGraph: {
