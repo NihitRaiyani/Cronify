@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "lint:copy": "node scripts/check-copy.mjs",
     "verify": "node scripts/verify-landing.mjs http://localhost:3011 landing",
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "measure": "node scripts/measure-refs.mjs",
+    "diff": "node scripts/diff-section.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

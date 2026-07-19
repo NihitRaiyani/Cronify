@@ -42,3 +42,6 @@ next-env.d.ts
 
 # verification artifacts
 /verify-out/
+
+# third-party reference captures + diff montages (local only, never committed)
+/refs/
