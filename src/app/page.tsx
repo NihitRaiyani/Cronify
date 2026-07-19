@@ -12,22 +12,37 @@ import { Navbar } from "@/components/sections/navbar";
 import { Pricing } from "@/components/sections/pricing";
 import { ProductShowcase } from "@/components/sections/product-showcase";
 
+/** Measured Agentify detail: two vertical hairlines running the body at the
+ *  1280 container edges. Decorative only; sections render above them. */
+function PageLines() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-[1280px] -translate-x-1/2 border-x border-edge min-[1360px]:block"
+    />
+  );
+}
+
 export default function Home() {
   return (
     <>
       <Navbar />
       <main id="main">
         <Hero />
-        <BuiltFor />
-        <Features />
-        <HowItWorks />
-        <ProductShowcase />
-        <AiWorkflow />
-        <Integrations />
-        <Pricing />
-        <FromTheField />
-        <Faq />
-        <FinalCta />
+        {/* body order mirrors the measured reference */}
+        <div className="relative">
+          <PageLines />
+          <BuiltFor />
+          <Features />
+          <HowItWorks />
+          <AiWorkflow />
+          <ProductShowcase />
+          <Pricing />
+          <Integrations />
+          <FromTheField />
+          <Faq />
+          <FinalCta />
+        </div>
       </main>
       <Footer />
     </>

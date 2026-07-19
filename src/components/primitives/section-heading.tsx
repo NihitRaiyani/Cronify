@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Italic serif accent for a word or two inside display headlines. */
+/** Serif accent — kept for the hero register (Fraunces). */
 export function Serif({
   children,
   className,
@@ -9,18 +9,14 @@ export function Serif({
   className?: string;
 }) {
   return (
-    <span
-      className={cn(
-        "font-serif italic font-normal tracking-normal text-gradient-brand",
-        className,
-      )}
-    >
+    <span className={cn("font-serif font-light tracking-normal", className)}>
       {children}
     </span>
   );
 }
 
-/** Small uppercase chip above a section heading, with optional Gujarati accent. */
+/** Minimal label line above a heading — the measured design has no chip, so
+ *  this is quiet uppercase text with the Gujarati accent inline. */
 export function Eyebrow({
   children,
   gujarati,
@@ -33,17 +29,13 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-dim",
+        "inline-flex items-center gap-2.5 font-sans text-xs font-medium uppercase tracking-[0.2em] text-ink-muted",
         className,
       )}
     >
-      <span
-        aria-hidden
-        className="size-1.5 rounded-full bg-gradient-to-r from-brand-400 to-aqua-400"
-      />
       {children}
       {gujarati ? (
-        <span className="font-gujarati text-[13px] normal-case leading-none tracking-normal text-aqua-300/90">
+        <span className="font-gujarati text-[13px] normal-case leading-none tracking-normal text-lime/90">
           {gujarati}
         </span>
       ) : null}
@@ -60,6 +52,8 @@ type SectionHeadingProps = {
   className?: string;
 };
 
+/** Measured Agentify heading block: centered Inter Tight 48/57.6 w600 white,
+ *  16/24 muted lede below. */
 export function SectionHeading({
   eyebrow,
   eyebrowGujarati,
@@ -71,17 +65,17 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "flex flex-col gap-5",
+        "flex flex-col gap-4",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className,
       )}
     >
       {eyebrow ? <Eyebrow gujarati={eyebrowGujarati}>{eyebrow}</Eyebrow> : null}
-      <h2 className="max-w-[22ch] font-display text-4xl font-semibold leading-[1.06] tracking-[-0.02em] text-ink sm:text-5xl">
+      <h2 className="max-w-[24ch] font-display text-[32px] font-semibold leading-[1.2] text-ink sm:text-[40px] lg:text-[48px]">
         {title}
       </h2>
       {lede ? (
-        <p className="max-w-xl text-base leading-relaxed text-ink-dim sm:text-lg">
+        <p className="max-w-xl font-sans text-base leading-6 text-ink-muted">
           {lede}
         </p>
       ) : null}

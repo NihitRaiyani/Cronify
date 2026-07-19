@@ -1,7 +1,6 @@
 export const BUILT_FOR = {
-  kicker: "Built for the shops on every main road",
+  kicker: "Lumora — built for the shops on every main road",
   kickerGujarati: "દરેક બજારની દુકાન માટે",
-  note: "Six templates, each shaped for a real category. A shop that fits none of them gets no demo — Lumora never fakes a fit.",
   verticals: [
     { key: "restaurant", label: "Restaurants & cafés", gujarati: "રેસ્ટોરન્ટ" },
     { key: "clinic", label: "Clinics", gujarati: "ક્લિનિક" },

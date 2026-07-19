@@ -1,19 +1,13 @@
 /**
  * Copy for the closing CTA panel. Copy rules (enforced by
  * scripts/check-copy.mjs): no claim terms, no dollar signs, nothing invented —
- * the only numbers are structural truths of the product.
+ * the only numbers are structural truths of the product (eight layers,
+ * 0–100 score, seven public signals).
  */
 
 export const FINAL_CTA = {
-  gujarati: "ડેમો પહેલાં",
-  gujaratiGloss: "the demo comes first",
-  titleStart: "Be there before the first",
-  titleAccent: "hello.",
-  lede: "The site for the next invisible shop can exist before you knock — walk in with something to show.",
-  primary: { label: "Get early access", href: "#" },
-  secondary: { label: "See what a shop receives", href: "#showcase" },
-  chips: {
-    templates: { value: "6", label: "shop templates" },
-    firewall: { value: "0", label: "invented claims" },
-  },
+  title: "Start the journey from Discover to Grow.",
+  sub: "Eight layers, one honest path: a 0–100 score from seven public signals, a bilingual draft, and a human review before anything ships.",
+  primary: { label: "See a demo", href: "#" },
+  secondary: { label: "Get early access", href: "#" },
 } as const;

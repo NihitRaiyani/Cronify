@@ -1,64 +1,67 @@
+import { Reveal } from "@/components/motion/reveal";
 import { Container } from "@/components/primitives/container";
-import { Wordmark } from "@/components/sections/navbar";
 import { FOOTER } from "@/content/footer";
+import { cn } from "@/lib/utils";
 
+/**
+ * Footer: measured Agentify section_footer — a giant centered wordmark over a
+ * hairline rule, then a 4-column link grid (description + three nav groups)
+ * and a hairline-topped bottom bar.
+ */
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-night-950 py-16">
+    <footer id="footer" className="relative overflow-x-clip pb-10 pt-[100px]">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-10">
-          <div className="flex max-w-sm flex-col items-start gap-5">
-            <a
-              href="#main"
-              aria-label="Lumora — back to start"
-              className="rounded-md"
-            >
-              <Wordmark />
-            </a>
-            <p className="text-sm leading-relaxed text-ink-dim">
-              {FOOTER.oneLiner}
-            </p>
-            <p className="text-sm leading-relaxed text-ink-faint">
-              {FOOTER.rulePlain}{" "}
-              <span className="font-serif italic text-ink-dim">
-                {FOOTER.ruleSerif}
-              </span>
+        <Reveal>
+          <div className="border-b border-edge text-center">
+            <p className="font-serif text-[64px] leading-none text-ink sm:text-[110px] lg:text-[180px]">
+              {FOOTER.wordmark}
+              <span className="text-lime">.</span>
             </p>
           </div>
+        </Reveal>
 
-          {FOOTER.columns.map((column) => (
-            <nav
-              key={column.title}
-              aria-label={column.title}
-              className="flex flex-col gap-4 lg:pt-1.5"
-            >
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-faint">
-                {column.title}
-              </h3>
-              <ul className="flex flex-col gap-2.5">
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-ink-dim transition-colors hover:text-ink"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
-        </div>
+        <Reveal delay={0.08}>
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+            <div className="flex max-w-md flex-col gap-4">
+              <p className="font-sans text-base leading-6 text-ink-muted">
+                {FOOTER.description}
+              </p>
+              <p className="font-gujarati text-sm leading-relaxed text-lime/80">
+                {FOOTER.gujarati}
+              </p>
+            </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-[13px] text-ink-faint sm:flex-row sm:items-center sm:justify-between">
-          <p className="flex items-center gap-2">
-            {FOOTER.copyright}
-            <span className="font-gujarati text-sm leading-none text-aqua-300/80">
-              {FOOTER.copyrightGujarati}
-            </span>
-          </p>
-          <p>{FOOTER.honesty}</p>
+            {FOOTER.columns.map((column) => (
+              <nav key={column.title} aria-label={column.title}>
+                <h3 className="mb-4 font-sans text-sm font-medium uppercase tracking-[0.12em] text-ink-muted">
+                  {column.title}
+                </h3>
+                <ul className="flex flex-col gap-3">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className={cn(
+                          "font-sans text-base transition-colors",
+                          "accent" in link && link.accent
+                            ? "text-lime hover:text-lime/80"
+                            : "text-white/80 hover:text-white",
+                        )}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+        </Reveal>
+
+        <div className="mt-14 flex flex-col gap-2 border-t border-edge pt-6 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>{FOOTER.copyright}</p>
+          <p>{FOOTER.tagline}</p>
         </div>
       </Container>
     </footer>

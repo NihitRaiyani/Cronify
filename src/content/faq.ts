@@ -1,44 +1,45 @@
 /**
  * Copy for the FAQ accordion. Answers stay grounded in how the product
- * actually behaves — no promises, no invented numbers.
+ * actually behaves — the eight-layer journey, public listings only,
+ * Gujarati/English, and the draft → review → approve gate. No promises,
+ * no invented numbers.
  */
 
 export const FAQ = {
   eyebrow: "FAQ",
   eyebrowGujarati: "સવાલો",
-  titleStart: "Questions, answered",
-  titleAccent: "plainly.",
-  lede: "Six short answers about what Lumora does — and what it refuses to do.",
+  title: "Asked, answered — honestly",
+  lede: "Six straight answers about what Lumora does, where its facts come from, and what it refuses to make up.",
   items: [
     {
-      key: "real",
-      q: "Is the demo site real?",
-      a: "Yes. Every section is generated from public listing facts — name, category, location, photos, hours, reviews. If a fact was never found, the section that needs it stays hidden instead of being filled in.",
+      key: "what",
+      q: "What is Lumora?",
+      a: "Lumora reads a local shop's public presence and turns it into a working demo website in Gujarati or English. Every shop moves through an eight-layer journey — from being discovered in public map listings to a page that keeps improving — and nothing is shared until a person has reviewed and approved it.",
     },
     {
-      key: "shops",
-      q: "Which shops does it work for?",
-      a: "Exactly six categories: restaurants & cafés, clinics, gyms & fitness, clothing & boutiques, salons & spas, and electronics & mobile. A shop that fits none of the six templates gets no demo — Lumora never fakes a fit.",
+      key: "journey",
+      q: "How does the eight-layer journey work?",
+      a: "In order: 01 Discover finds the shop in public listings, 02 Understand reads what those listings say, 03 Score rates its presence from 0 to 100, 04 Draft builds the demo site, 05 Review puts a person in the loop, 06 Share hands the owner one link, 07 Converse carries the conversation that follows, and 08 Grow tracks what changes after.",
+    },
+    {
+      key: "source",
+      q: "Where does the information come from?",
+      a: "Only from public listings — the seven public signals a shop already shows the internet: name, category, location, hours, photos, reviews, and contact details. If a signal was never found, the section that needs it stays hidden instead of being filled in.",
     },
     {
       key: "language",
-      q: "Which languages, and who decides?",
-      a: "Gujarati or English, chosen by a pincode → locality → city cascade — urban areas usually resolve to English, rural ones to Gujarati. Shop names are transliterated, never translated: વેદાંત stays Vedant.",
+      q: "Which languages does it write in?",
+      a: "Gujarati and English, chosen by a pincode → locality → city cascade — urban areas usually resolve to English, rural ones to Gujarati. Shop names are transliterated, never translated: વેદાંત stays Vedant on the page.",
     },
     {
-      key: "ai",
-      q: "Does AI write the website?",
-      a: "One fenced model call formats verified facts into a fixed JSON shape — that is its whole job. Layout, structure, and sections are code, and the model never writes a price.",
+      key: "truth",
+      q: "Can a demo say something untrue?",
+      a: "It is built not to. A claim firewall blocks invented facts, any section missing its fact stays hidden rather than guessed, and every draft passes a human review gate before it can be approved and shared.",
     },
     {
       key: "cost",
       q: "What does it cost?",
-      a: "There is no price list yet. Lumora is in early access, and pricing is being shaped with the first operators — numbers appear here only once they are real.",
-    },
-    {
-      key: "auto",
-      q: "Is anything sent automatically?",
-      a: "No. Every demo starts as a draft, gets reviewed, and is only then approved. The operator shares one link personally — nothing goes out on its own.",
+      a: "The first three layers — Discover, Understand, Score — cost nothing for one city. Paid plans are in rupees (₹) and begin when drafting starts; the full breakdown sits in the pricing section above.",
     },
   ],
 } as const;

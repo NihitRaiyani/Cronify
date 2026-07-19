@@ -1,27 +1,64 @@
 /**
- * Copy for the early-access pricing panel. No amounts exist yet — this section
- * says so plainly instead of inventing tiers or numbers.
+ * Copy for the pricing section. Amounts are in ₹ only and read as pilot
+ * pricing; every plan fact is structural (layers included, runs per month,
+ * the review gate, the two languages) — nothing invented as a hard promise.
  */
 
 export const PRICING = {
   eyebrow: "Pricing",
   eyebrowGujarati: "કિંમત",
-  titleStart: "Early access, priced",
-  titleAccent: "later.",
-  lede: "The price is being shaped with the first operators. This page never invents a number, and that rule holds here too — no figures until they are real.",
-  panel: {
-    title: "What exists today",
-    chip: "early access · open",
-    includes: [
-      "Scan a city and an industry for shops with no website",
-      "An explainable presence score, 0 to 100",
-      "Demo generation in Gujarati or English",
-      "Honest-render firewall — unknown facts stay hidden, never faked",
-      "A draft → reviewed → approved gate before anything is shared",
-      "One shareable demo link, plus a QR code",
-    ],
-    note: "Operators shape the price — joining early means being part of that conversation.",
+  title: "Pricing that walks before it runs",
+  lede: "The first three layers of the journey cost nothing. Pay when drafting, review, and sharing begin — and talk to us when a whole city is on the list.",
+  billing: {
+    monthly: "Billed monthly",
+    yearly: "Billed yearly",
   },
-  cta: { label: "Get early access", href: "#" },
-  secondaryCta: { label: "See the product", href: "#showcase" },
+  plans: [
+    {
+      icon: "walk",
+      label: "For first walks",
+      price: { monthly: "Free", yearly: "Free" },
+      suffix: "for one city",
+      spec: "Layers 01–03 · one city, one industry",
+      cta: "Start the pilot",
+      features: [
+        "Discover shops through public map listings",
+        "Seven public signals read per shop",
+        "A presence score from 0 to 100, explained",
+        "50 scoring runs a month",
+        "One reviewer seat",
+      ],
+    },
+    {
+      icon: "run",
+      label: "For steady runs",
+      price: { monthly: "₹2,400", yearly: "₹1,900" },
+      suffix: "/month",
+      spec: "Layers 01–07 · 500 runs a month",
+      cta: "Run the journey",
+      features: [
+        "Everything in the free walk",
+        "Drafts in Gujarati and English",
+        "Draft → review → approve gate on every page",
+        "Share links with QR codes",
+        "Replies handled in both languages",
+        "Three reviewer seats",
+      ],
+    },
+    {
+      icon: "grow",
+      label: "For whole cities",
+      price: { monthly: "Custom", yearly: "Custom" },
+      suffix: "",
+      spec: "All eight layers · runs sized to your list",
+      cta: "Talk to us",
+      features: [
+        "Every layer, Discover through Grow",
+        "Runs sized to your city list",
+        "Review gates shaped to your team",
+        "Onboarding in Gujarati or English",
+        "A named human to call",
+      ],
+    },
+  ],
 } as const;

@@ -70,8 +70,9 @@ try {
     await loc.screenshot({ path: oursPng, animations: "disabled" });
   }
 
-  // montage: relative img srcs, html lives next to the images
-  const montage = path.resolve("refs/diffs/.montage.html");
+  // montage: relative img srcs, html lives next to the images (per-key name so
+  // concurrent diff runs don't clobber each other)
+  const montage = path.resolve(`refs/diffs/.montage-${key}.html`);
   const rel = (p) => path.relative(path.dirname(montage), p);
   fs.writeFileSync(
     montage,
