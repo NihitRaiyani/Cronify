@@ -41,11 +41,14 @@ export function Hero() {
       aria-label={HERO.ariaScene}
     >
       {/* BG dusk panorama — static from first paint (measured: no entrance).
-          Measured Solidroad zoom: the photo box overscans the hero by ~250px
-          top and bottom at 900vh (1400-tall box, ±28%), so object-cover crops
-          in ~1.55x tighter than a plain fill. The section's overflow-hidden
-          clips the overscan. Plain <img>: sizes are pre-generated webp, the
-          optimizer adds risk only. */}
+          Zoomed like the Solidroad hero photo: an overscan box so object-cover
+          crops tighter than a plain fill. Their raw ±28% box crushed our sky
+          band to ~15% (their vista photo carries far more sky than our
+          panorama), so the overscan is composition-corrected to 120% with a
+          -6% top bias — matches their ~35% sky-to-mountain balance
+          (diff grid: refs/diffs/fix-1/zoomtest-grid.png). The section's
+          overflow-hidden clips the overscan. Plain <img>: sizes are
+          pre-generated webp, the optimizer adds risk only. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/hero-dusk-panorama-1920.webp"
@@ -58,7 +61,7 @@ export function Hero() {
         decoding="async"
         draggable={false}
         className="absolute left-0 w-full object-cover"
-        style={{ top: "-28%", height: "156%" }}
+        style={{ top: "-6%", height: "120%" }}
       />
       {/* measured left scrim: 270° transparent→black, opacity 0.5, left half */}
       <div
