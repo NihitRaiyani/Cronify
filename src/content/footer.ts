@@ -17,12 +17,18 @@ type FooterColumn = {
 
 export const FOOTER = {
   wordmark: "lumora",
-  description:
-    "Lumora finds local shops with no website, scores how visible each one is from seven public signals, and drafts an honest bilingual site — nothing ships without a human review.",
+  blurb:
+    "Lumora drafts honest bilingual sites for local shops with no web presence.",
   gujarati: "ગુજરાતની દુકાનો માટે",
+  contactTitle: "Contact",
+  socials: [
+    { label: "Facebook", href: "#" },
+    { label: "Instagram", href: "#" },
+    { label: "X", href: "#" },
+  ],
   columns: [
     {
-      title: "Product",
+      title: "Menu",
       links: [
         { label: "The journey", href: "#how-it-works" },
         { label: "Features", href: "#features" },
@@ -31,7 +37,7 @@ export const FOOTER = {
       ],
     },
     {
-      title: "Honesty",
+      title: "Quick Links",
       links: [
         { label: "Claim firewall", href: "#features" },
         { label: "Review gate", href: "#ai-workflow" },
@@ -39,7 +45,7 @@ export const FOOTER = {
       ],
     },
     {
-      title: "Contact",
+      title: "Company",
       links: [
         { label: "hello@lumora.example", href: "#", accent: true },
         { label: "Chat", href: "#" },
@@ -51,8 +57,10 @@ export const FOOTER = {
   tagline: "Made for the shops the internet forgot.",
 } as const satisfies {
   wordmark: string;
-  description: string;
+  blurb: string;
   gujarati: string;
+  contactTitle: string;
+  socials: readonly { label: string; href: string }[];
   columns: readonly FooterColumn[];
   copyright: string;
   tagline: string;

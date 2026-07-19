@@ -11,6 +11,7 @@ import { Integrations } from "@/components/sections/integrations";
 import { Navbar } from "@/components/sections/navbar";
 import { Pricing } from "@/components/sections/pricing";
 import { ProductShowcase } from "@/components/sections/product-showcase";
+import { SectionDivider } from "@/components/primitives/section-divider";
 
 /** Measured Agentify detail: two vertical hairlines running the body at the
  *  1280 container edges. Decorative only; sections render above them. */
@@ -32,15 +33,25 @@ export default function Home() {
         {/* body order mirrors the measured reference */}
         <div className="relative">
           <PageLines />
+          <SectionDivider />
           <BuiltFor />
+          <SectionDivider />
           <Features />
+          <SectionDivider />
           <HowItWorks />
+          <SectionDivider />
           <AiWorkflow />
+          <SectionDivider />
           <ProductShowcase />
+          <SectionDivider />
           <Pricing />
+          <SectionDivider />
           <Integrations />
+          <SectionDivider />
           <FromTheField />
+          <SectionDivider />
           <Faq />
+          <SectionDivider />
           <FinalCta />
         </div>
       </main>
