@@ -5,7 +5,8 @@
  *
  * Usage: node scripts/verify-landing.mjs <url> [label] [expectText] [outDir]
  *
- * Loads <url> in headless Chromium emulating an iPhone 13 (390×844) and asserts:
+ * Loads <url> in headless Chromium at desktop 1440×900 (per project direction:
+ * desktop web is the target) and asserts:
  *   demoLoaded    main document 2xx AND expectText present in *visible* text
  *   noLocalhost   zero requests/baked URLs to any localhost origin except the target's own
  *   imgsLoaded    every visible http(s) <img> decoded (naturalWidth > 0)
@@ -17,7 +18,9 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { chromium, devices } from "playwright";
+import { chromium } from "playwright";
+
+const VIEWPORT = { width: 1440, height: 900 };
 
 // Kept in sync with backend/app/services/generation.py _BANNED_CLAIMS (25 terms).
 const BANNED_CLAIMS = [
@@ -52,7 +55,7 @@ const targetOrigin = new URL(url).origin;
 const verdict = {
   url,
   label,
-  viewport: { width: 390, height: 844 },
+  viewport: VIEWPORT,
   startedAt: new Date().toISOString(),
   assertions: {},
   verdict: "ERROR",
@@ -63,7 +66,7 @@ const verdict = {
 const browser = await chromium.launch();
 try {
   const context = await browser.newContext({
-    ...devices["iPhone 13"],
+    viewport: VIEWPORT,
     deviceScaleFactor: 2,
   });
   const page = await context.newPage();
@@ -224,7 +227,7 @@ try {
   await page.screenshot({
     path: shotPath,
     fullPage: true,
-    clip: { x: 0, y: 0, width: 390, height: shotHeight },
+    clip: { x: 0, y: 0, width: VIEWPORT.width, height: shotHeight },
   });
   verdict.assertions.screenshot = { pass: true, path: shotPath };
 

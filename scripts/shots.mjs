@@ -68,12 +68,12 @@ try {
       await page.close();
     }
     if (rm) {
-      const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+      const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
       await settle(page);
-      await page.screenshot({ path: "verify-out/shot-390-rm.png", fullPage: true });
-      console.log("verify-out/shot-390-rm.png (reduced motion)");
+      await page.screenshot({ path: "verify-out/shot-1440-rm.png", fullPage: true });
+      console.log("verify-out/shot-1440-rm.png (reduced motion)");
     }
   }
 } finally {

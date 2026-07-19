@@ -8,10 +8,42 @@ import {
 } from "./fonts";
 import "./globals.css";
 
+const TITLE = "Lumora — websites for invisible local businesses";
+const DESCRIPTION =
+  "Lumora finds local shops with no website, scores their digital presence, and generates an honest Gujarati-or-English demo site — ready before the first conversation.";
+
 export const metadata: Metadata = {
-  title: "Lumora — websites for invisible local businesses",
-  description:
-    "Lumora finds local shops with no website, scores their digital presence, and generates an honest Gujarati-or-English demo site — ready before the first conversation.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: TITLE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/og.png"],
+  },
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "Lumora",
+      description: DESCRIPTION,
+    },
+    {
+      "@type": "WebSite",
+      name: "Lumora",
+      description: DESCRIPTION,
+      inLanguage: ["en", "gu"],
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -29,6 +61,10 @@ export default function RootLayout({
       className={`${instrumentSans.variable} ${bricolage.variable} ${instrumentSerif.variable} ${notoGujarati.variable}`}
     >
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <noscript>
           {/* Motion entrances SSR at opacity 0; without JS, force them visible. */}
           <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
