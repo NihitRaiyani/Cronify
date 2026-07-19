@@ -1,11 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { MotionProvider } from "@/components/motion/motion-provider";
-import {
-  bricolage,
-  instrumentSans,
-  instrumentSerif,
-  notoGujarati,
-} from "./fonts";
+import { fraunces, inter, interTight, notoGujarati } from "./fonts";
 import "./globals.css";
 
 const TITLE = "Lumora — websites for invisible local businesses";
@@ -51,7 +46,7 @@ const JSON_LD = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B1020",
+  themeColor: "#0E0D14",
 };
 
 export default function RootLayout({
@@ -62,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${bricolage.variable} ${instrumentSerif.variable} ${notoGujarati.variable}`}
+      className={`${inter.variable} ${interTight.variable} ${fraunces.variable} ${notoGujarati.variable}`}
     >
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
         <script

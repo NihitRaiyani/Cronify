@@ -2,42 +2,70 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Lumora landing — one permanent night theme (no light mode, no .dark toggling).
-   Deep-space navy base, indigo→cyan aurora accents, amber spark for low scores. */
+/* Lumora landing — measured retheme (refs/measurements.md).
+   Body: Agentify near-black green-tinted dark (#0E0D14, deep-green #002010
+   surfaces, lime #CEF47B accents, hairline cells, sharp corners).
+   Hero subtree (.theme-hero): Solidroad dusk palette (cream ink on photo-dark,
+   vivid lime #DBF400 pill CTAs). Semantic vars flip per subtree. */
 
 :root {
-  --background: #0b1020;
-  --foreground: #e8edf8;
-  --card: #101828;
-  --card-foreground: #e8edf8;
-  --popover: #0f1626;
-  --popover-foreground: #e8edf8;
-  --primary: #e8edf8;
-  --primary-foreground: #0b1020;
-  --secondary: #182238;
-  --secondary-foreground: #e8edf8;
-  --muted: #131b2e;
-  --muted-foreground: #97a3bc;
-  --accent: #182238;
-  --accent-foreground: #e8edf8;
+  /* shadcn tokens → measured Agentify values */
+  --background: #0e0d14;
+  --foreground: #ffffff;
+  --card: #002010;
+  --card-foreground: #ffffff;
+  --popover: #10141a;
+  --popover-foreground: #ffffff;
+  --primary: #cef47b;
+  --primary-foreground: #0c0c0c;
+  --secondary: #002010;
+  --secondary-foreground: #ffffff;
+  --muted: #14181f;
+  --muted-foreground: #979e9b;
+  --accent: #002010;
+  --accent-foreground: #cef47b;
   --destructive: #f87171;
-  --border: rgba(232, 237, 248, 0.08);
-  --input: rgba(232, 237, 248, 0.12);
-  --ring: #22d3ee;
-  --chart-1: #4f46e5;
-  --chart-2: #06b6d4;
-  --chart-3: #818cf8;
-  --chart-4: #67e8f9;
-  --chart-5: #f59e0b;
-  --radius: 0.75rem;
-  --sidebar: #0f1626;
-  --sidebar-foreground: #e8edf8;
-  --sidebar-primary: #4f46e5;
-  --sidebar-primary-foreground: #e8edf8;
-  --sidebar-accent: #182238;
-  --sidebar-accent-foreground: #e8edf8;
-  --sidebar-border: rgba(232, 237, 248, 0.08);
-  --sidebar-ring: #22d3ee;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #cef47b;
+  --chart-1: #cef47b;
+  --chart-2: #a1ff95;
+  --chart-3: #adee84;
+  --chart-4: #8fe68f;
+  --chart-5: #dbf163;
+  --radius: 0.25rem;
+  --sidebar: #10141a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #cef47b;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #002010;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #cef47b;
+
+  /* semantic layer — Agentify defaults, re-scoped by .theme-hero below */
+  --surface: #0e0d14;
+  --surface-deep: #002010;
+  --ink: #ffffff;
+  --ink-muted: #979e9b;
+  --ink-inverse: #0c0c0c;
+  --accent-lime: #cef47b;
+  --accent-tile: #adee84;
+  --check: #a1ff95;
+  --edge: rgba(255, 255, 255, 0.08);
+}
+
+/* Solidroad palette for the navbar+hero subtree (measured). */
+.theme-hero {
+  --surface: #201918;
+  --surface-deep: #263546;
+  --ink: #fbf7eb;
+  --ink-muted: rgba(251, 247, 235, 0.82);
+  --ink-inverse: #2d2c29;
+  --accent-lime: #dbf400;
+  --accent-tile: #dbf400;
+  --check: #b8dea0;
+  --edge: rgba(251, 247, 235, 0.18);
 }
 
 @theme inline {
@@ -48,6 +76,18 @@
   --font-serif: var(--font-serif);
   --font-gujarati: var(--font-gujarati);
   --font-heading: var(--font-display);
+
+  /* semantic, subtree-scoped */
+  --color-surface: var(--surface);
+  --color-surface-deep: var(--surface-deep);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-lime: var(--accent-lime);
+  --color-tile: var(--accent-tile);
+  --color-check: var(--check);
+  --color-edge: var(--edge);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -87,12 +127,12 @@
 }
 
 @theme {
+  /* legacy night scales — kept until every section is rebuilt, then deleted */
   --color-night-950: #070b16;
   --color-night-900: #0b1020;
   --color-night-800: #101828;
   --color-night-700: #182238;
   --color-night-600: #223052;
-  --color-ink: #e8edf8;
   --color-ink-dim: #97a3bc;
   --color-ink-faint: #5b6880;
   --color-brand-300: #818cf8;
@@ -106,9 +146,9 @@
   --color-spark-300: #fcd34d;
   --color-spark-400: #fbbf24;
   --color-spark-500: #f59e0b;
-  --radius-card: 1.5rem;
+  --radius-card: 0.75rem;
 
-  --animate-marquee: marquee 46s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
   --animate-dash: dash 3s linear infinite;
   --animate-aurora-a: aurora-a 16s ease-in-out infinite alternate;
   --animate-aurora-b: aurora-b 19s ease-in-out infinite alternate;
@@ -149,10 +189,46 @@
 }
 
 @utility text-gradient-brand {
-  background: linear-gradient(94deg, #a5b4fc 4%, #818cf8 38%, #67e8f9 96%);
+  background: linear-gradient(94deg, #dbf163 4%, #cef47b 48%, #8fe68f 96%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Agentify button treatment: 1px frame floating ~3px outside the fill. */
+@utility frame-lime {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--accent-lime);
+    pointer-events: none;
+  }
+}
+
+@utility frame-light {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+  }
+}
+
+/* Agentify striped panel: vertical lime bands, ~40px pitch. */
+@utility stripes-lime {
+  background-image: linear-gradient(115deg, #dbf163 0%, #b9ee79 45%, #8fe68f 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.14) 0px,
+      rgba(255, 255, 255, 0.14) 40px,
+      rgba(255, 255, 255, 0) 40px,
+      rgba(255, 255, 255, 0) 80px
+    );
+  background-blend-mode: overlay;
 }
 
 @layer base {
@@ -167,8 +243,8 @@
     @apply bg-background text-foreground antialiased;
   }
   ::selection {
-    background: rgba(34, 211, 238, 0.28);
-    color: #e8edf8;
+    background: rgba(206, 244, 123, 0.3);
+    color: #ffffff;
   }
   :focus-visible {
     outline: 2px solid var(--ring);

@@ -1,33 +1,26 @@
 import localFont from "next/font/local";
 
-export const instrumentSans = localFont({
-  src: "../fonts/instrument-sans-latin-wght-normal.woff2",
+// Measured substitutions (refs/measurements.md): Inter ← FT Regola Neue/Matter,
+// Inter Tight ← Agentify headings (exact family), Fraunces ← ABC Arizona Mix.
+
+export const inter = localFont({
+  src: "../fonts/inter-latin-wght-normal.woff2",
   variable: "--font-sans",
-  weight: "400 700",
+  weight: "100 900",
   display: "swap",
 });
 
-export const bricolage = localFont({
-  src: "../fonts/bricolage-grotesque-latin-wght-normal.woff2",
+export const interTight = localFont({
+  src: "../fonts/inter-tight-latin-wght-normal.woff2",
   variable: "--font-display",
-  weight: "200 800",
+  weight: "100 900",
   display: "swap",
 });
 
-export const instrumentSerif = localFont({
-  src: [
-    {
-      path: "../fonts/instrument-serif-latin-400-normal.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/instrument-serif-latin-400-italic.woff2",
-      weight: "400",
-      style: "italic",
-    },
-  ],
+export const fraunces = localFont({
+  src: "../fonts/fraunces-latin-wght-normal.woff2",
   variable: "--font-serif",
+  weight: "100 900",
   display: "swap",
 });
 

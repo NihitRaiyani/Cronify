@@ -228,17 +228,22 @@ function collectInPage() {
   };
 }
 
-/** Crop a region out of an already-saved full-page PNG, via a local HTML page. */
+/** Crop a region out of an already-saved full-page PNG, via a local HTML page.
+ *  The HTML must be a real file next to the image — file:// subresources are
+ *  blocked from about:blank (setContent) pages. */
 async function cropFromFullpage(browser, fullpagePng, top, height, outFile) {
   const h = Math.min(Math.round(height), 4000);
+  const htmlFile = path.resolve("refs", ".crop.html");
+  const rel = path.relative(path.dirname(htmlFile), path.resolve(fullpagePng));
+  fs.writeFileSync(
+    htmlFile,
+    `<body style="margin:0"><img src="${rel}" style="display:block;width:1440px;margin-top:-${Math.round(top)}px"></body>`
+  );
   const page = await browser.newPage({
     viewport: { width: 1440, height: Math.max(200, h) },
     deviceScaleFactor: 1,
   });
-  const imgUrl = "file://" + path.resolve(fullpagePng);
-  await page.setContent(
-    `<body style="margin:0"><img src="${imgUrl}" style="display:block;width:1440px;margin-top:-${Math.round(top)}px"></body>`
-  );
+  await page.goto("file://" + htmlFile);
   await page.waitForTimeout(150);
   await page.screenshot({ path: outFile });
   await page.close();
@@ -248,6 +253,32 @@ const out = {};
 const browser = await chromium.launch({
   args: ["--disable-blink-features=AutomationControlled"],
 });
+
+// --crops-only: regenerate refs/crops/ from existing full-page PNGs + JSON
+if (args.includes("--crops-only")) {
+  const prev = JSON.parse(fs.readFileSync("refs/measurements.json", "utf8"));
+  try {
+    for (const site of SITES) {
+      const data = prev[site.id]?.[1440];
+      if (!data) continue;
+      for (const s of data.sections) {
+        const slug =
+          (s.headingText || s.tag)
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 28) || `sec${s.index}`;
+        const nn = String(s.index).padStart(2, "0");
+        const crop = `refs/crops/${site.id}-${nn}-${slug}-1440.png`;
+        await cropFromFullpage(browser, `refs/${site.id}-1440.png`, s.rect.top, s.rect.height, crop);
+      }
+      console.log(`${site.id}: ${data.sections.length} crops regenerated`);
+    }
+  } finally {
+    await browser.close();
+  }
+  process.exit(0);
+}
 
 try {
   for (const site of SITES) {
