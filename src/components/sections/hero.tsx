@@ -41,7 +41,11 @@ export function Hero() {
       aria-label={HERO.ariaScene}
     >
       {/* BG dusk panorama — static from first paint (measured: no entrance).
-          Plain <img>: sizes are pre-generated webp, the optimizer adds risk only. */}
+          Measured Solidroad zoom: the photo box overscans the hero by ~250px
+          top and bottom at 900vh (1400-tall box, ±28%), so object-cover crops
+          in ~1.55x tighter than a plain fill. The section's overflow-hidden
+          clips the overscan. Plain <img>: sizes are pre-generated webp, the
+          optimizer adds risk only. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/hero-dusk-panorama-1920.webp"
@@ -53,7 +57,8 @@ export function Hero() {
         fetchPriority="high"
         decoding="async"
         draggable={false}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute left-0 w-full object-cover"
+        style={{ top: "-28%", height: "156%" }}
       />
       {/* measured left scrim: 270° transparent→black, opacity 0.5, left half */}
       <div
@@ -126,9 +131,9 @@ export function Hero() {
           height={815}
           decoding="async"
           draggable={false}
-          className="absolute bottom-0 right-0 w-[min(62vw,1100px)]"
+          className="absolute bottom-0 right-0 w-[min(75vw,1330px)]"
         />
-        <JourneyLine className="absolute bottom-0 right-0 w-[min(62vw,1100px)]" />
+        <JourneyLine className="absolute bottom-0 right-0 w-[min(75vw,1330px)]" />
       </m.div>
     </section>
   );
