@@ -31,14 +31,18 @@ async function settle(page) {
   await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => {});
   await page.evaluate(async () => {
     await document.fonts.ready;
+    // Slow enough that every whileInView IntersectionObserver fires (once:true
+    // keeps the revealed state for the stitched full-page capture).
     const h = document.body.scrollHeight;
-    for (let y = 0; y <= h; y += 500) {
+    for (let y = 0; y <= h; y += 350) {
       window.scrollTo(0, y);
-      await new Promise((r) => setTimeout(r, 60));
+      await new Promise((r) => setTimeout(r, 140));
     }
+    window.scrollTo(0, document.body.scrollHeight);
+    await new Promise((r) => setTimeout(r, 400));
     window.scrollTo(0, 0);
   });
-  await page.waitForTimeout(1_200);
+  await page.waitForTimeout(1_600);
 }
 
 try {

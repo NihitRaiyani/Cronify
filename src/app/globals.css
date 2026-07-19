@@ -127,31 +127,8 @@
 }
 
 @theme {
-  /* legacy night scales — kept until every section is rebuilt, then deleted */
-  --color-night-950: #070b16;
-  --color-night-900: #0b1020;
-  --color-night-800: #101828;
-  --color-night-700: #182238;
-  --color-night-600: #223052;
-  --color-ink-dim: #97a3bc;
-  --color-ink-faint: #5b6880;
-  --color-brand-300: #818cf8;
-  --color-brand-400: #6366f1;
-  --color-brand-500: #4f46e5;
-  --color-brand-600: #4338ca;
-  --color-aqua-300: #67e8f9;
-  --color-aqua-400: #22d3ee;
-  --color-aqua-500: #06b6d4;
-  --color-aqua-600: #0891b2;
-  --color-spark-300: #fcd34d;
-  --color-spark-400: #fbbf24;
-  --color-spark-500: #f59e0b;
-  --radius-card: 0.75rem;
-
   --animate-marquee: marquee 30s linear infinite;
   --animate-dash: dash 3s linear infinite;
-  --animate-aurora-a: aurora-a 16s ease-in-out infinite alternate;
-  --animate-aurora-b: aurora-b 19s ease-in-out infinite alternate;
 
   @keyframes marquee {
     to {
@@ -163,36 +140,6 @@
       stroke-dashoffset: -24;
     }
   }
-  @keyframes aurora-a {
-    from {
-      transform: translate3d(-4%, -2%, 0) scale(1);
-    }
-    to {
-      transform: translate3d(5%, 4%, 0) scale(1.1);
-    }
-  }
-  @keyframes aurora-b {
-    from {
-      transform: translate3d(3%, 2%, 0) scale(1.05);
-    }
-    to {
-      transform: translate3d(-5%, -3%, 0) scale(0.97);
-    }
-  }
-}
-
-@utility glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-@utility text-gradient-brand {
-  background: linear-gradient(94deg, #dbf163 4%, #cef47b 48%, #8fe68f 96%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 /* Agentify button treatment: 1px frame floating ~3px outside the fill. */
