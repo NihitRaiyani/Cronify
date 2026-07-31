@@ -36,9 +36,10 @@ export function QountNavbar() {
       <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between gap-4 px-6 md:px-10">
         {/* Logo */}
         <a href="#" className="flex items-center rounded-md outline-none">
-          <span className="font-sans text-[20px] font-bold tracking-[0.1em] text-white">
+          <img src="/qount-logo.png" alt="Qount Logo" className="h-10 w-full" />
+          {/* <span className="font-sans text-[20px] font-bold tracking-[0.1em] text-white">
             LOGO
-          </span>
+          </span> */}
         </a>
 
         {/* Desktop Navigation */}

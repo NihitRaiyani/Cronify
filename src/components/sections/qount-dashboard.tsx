@@ -9,8 +9,30 @@ export function QountDashboard() {
   useEffect(() => {
     if (!canvasRef.current) return;
 
+    // Fetch and scan Rive binary for ASCII strings (artboard names, inputs, etc.)
+    fetch("/hero_desktop_V05.riv")
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const bytes = new Uint8Array(buffer);
+        const strings = [];
+        let current = "";
+        for (let i = 0; i < bytes.length; i++) {
+          const byte = bytes[i];
+          if (byte >= 32 && byte <= 126) {
+            current += String.fromCharCode(byte);
+          } else {
+            if (current.length >= 3) {
+              strings.push(current);
+            }
+            current = "";
+          }
+        }
+        console.log("RIVE_BINARY_STRINGS:", JSON.stringify([...new Set(strings)]));
+      })
+      .catch((err) => console.error("Error reading Rive binary:", err));
+
     const rive = new Rive({
-      src: "/hero_desktop_V05_cronify.riv",
+      src: "/hero_desktop_V05.riv",
       canvas: canvasRef.current,
       autoplay: true,
       stateMachines: "State Machine 1",
@@ -18,23 +40,6 @@ export function QountDashboard() {
         console.log("RIVE_DEBUG: Loaded successfully");
         console.log("RIVE_DEBUG: State Machines:", JSON.stringify(rive.stateMachineNames));
         console.log("RIVE_DEBUG: Animations:", JSON.stringify(rive.animationNames));
-
-        setTimeout(() => {
-          try {
-            const inputs = rive.stateMachineInputs("State Machine 1");
-            if (inputs) {
-              console.log("RIVE_DEBUG: Inputs (Delayed):", JSON.stringify(inputs.map(inp => ({
-                name: inp.name,
-                type: inp.type,
-                value: inp.value
-              }))));
-            } else {
-              console.log("RIVE_DEBUG: Inputs (Delayed): null");
-            }
-          } catch (e) {
-            console.error("RIVE_DEBUG: Error getting inputs delayed:", e);
-          }
-        }, 500);
       },
       onLoadError: (err) => {
         console.error("RIVE_DEBUG: Load error:", err);
