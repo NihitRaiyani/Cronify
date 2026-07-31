@@ -18,7 +18,7 @@ import { Rive } from "@rive-app/canvas";
  * footer band follows immediately (measured seam).
  */
 export function FinalCta() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -27,7 +27,7 @@ export function FinalCta() {
       src: "/footer_desktop-V02.riv",
       canvas: canvasRef.current,
       autoplay: true,
-      
+
     });
 
     return () => {
@@ -45,12 +45,12 @@ export function FinalCta() {
       <Container className="max-w-[1300px] !px-0">
         <div>
           <figure>
-         <canvas
-      ref={canvasRef}
-      width={5000}
-      height={2035}
-      style={{ width: "100%", height: "100%" }}
-    />
+            <canvas
+              ref={canvasRef}
+              width={5000}
+              height={2035}
+              style={{ width: "100%", height: "100%" }}
+            />
           </figure>
         </div>
         {/* <div className="relative bg-[#eef5f1] p-12 text-center lg:px-20 lg:py-[140px]">

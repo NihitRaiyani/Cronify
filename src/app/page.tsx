@@ -10,13 +10,13 @@ import { Features } from "@/components/sections/features";
 import { FinalCta } from "@/components/sections/final-cta";
 import { Footer } from "@/components/sections/footer";
 import { FromTheField } from "@/components/sections/from-the-field";
-import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Integrations } from "@/components/sections/integrations";
-import { Navbar } from "@/components/sections/navbar";
 import { Pricing } from "@/components/sections/pricing";
 import { ProductShowcase } from "@/components/sections/product-showcase";
 import { SectionDivider } from "@/components/primitives/section-divider";
+import { QountNavbar } from "@/components/sections/qount-navbar";
+import { QountHero } from "@/components/sections/qount-hero";
 
 /** Measured Agentify detail: two vertical hairlines running the body at the
  *  1280 container edges. Decorative only; sections render above them. */
@@ -33,9 +33,9 @@ export default function Home() {
   return (
     // The 'root' prop tells Lenis to take over the document's main scrollbar
     <ReactLenis root options={{ lerp: 1.0, duration: 1.5, smoothWheel: true }}>
-      <Navbar />
+      <QountNavbar />
       <main id="main">
-        <Hero />
+        <QountHero />
         {/* body order mirrors the measured reference */}
         <div className="relative">
           <PageLines />
