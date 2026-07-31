@@ -3,7 +3,7 @@ export const INTEGRATIONS = {
   eyebrowGujarati: "જોડાણ",
   titleLines: ["Meets the shop", "where it already is"],
   lede: "Every layer of the journey — Discover through Grow — feeds the everyday surfaces a small shop already runs on.",
-  hub: "lumora",
+  hub: "cronify",
   tiles: [
     { key: "maps", label: "Map listings" },
     { key: "reviews", label: "Reviews" },

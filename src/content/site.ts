@@ -6,7 +6,7 @@
  */
 
 export const SITE = {
-  name: "Lumora",
+  name: "Cronify",
   tagline: "Websites for invisible local businesses",
   oneLiner:
     "An eight-layer automation journey: find local shops with no website, understand and score their presence, draft an honest local-language demo, then share, converse, and grow.",

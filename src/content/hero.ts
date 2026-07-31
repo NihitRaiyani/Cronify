@@ -34,7 +34,7 @@ export const HERO = {
   ariaScene:
     "Dusk mountain scene: photographed ridges under a fading sky, a sunlit peak in the foreground, a lime line tracing the path of the journey.",
   ariaConsole:
-    "Illustration of the Lumora presence console: a scan for salons in Surat lists shops without websites sorted by lowest presence score, one with a demo ready to share.",
+    "Illustration of the Cronify presence console: a scan for salons in Surat lists shops without websites sorted by lowest presence score, one with a demo ready to share.",
 } as const;
 
 export type ConsoleRowStatus = (typeof HERO.console.rows)[number]["status"];

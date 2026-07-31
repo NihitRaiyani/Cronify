@@ -1,5 +1,5 @@
 /**
- * Capture real screenshots of the deployed Lumora demo for the showcase slot.
+ * Capture real screenshots of the deployed Cronify demo for the showcase slot.
  *   node scripts/capture-demo.mjs
  *
  * Pinned viewport + DPR so captures are reproducible. Headless page pixels
@@ -11,7 +11,7 @@ import { chromium } from "playwright";
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
 
-const URL = "https://lumora-demo.pages.dev/";
+const URL = "https://cronify-demo.pages.dev/";
 const kb = (n) => `${Math.round(n / 1024)}KB`;
 
 await mkdir("public/demo", { recursive: true });

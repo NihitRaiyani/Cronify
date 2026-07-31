@@ -20,7 +20,7 @@ export function Wordmark({ className }: { className?: string }) {
         className,
       )}
     >
-      lumora
+      cronify
       <span className="text-lime">.</span>
     </span>
   );
@@ -51,7 +51,7 @@ export function Navbar() {
       <div className="mx-auto flex h-[66px] w-full max-w-[1600px] items-center justify-between gap-4 px-5 sm:px-10 lg:px-14">
         <a
           href="#main"
-          aria-label="Lumora — back to start"
+          aria-label="Cronify — back to start"
           className="rounded-md"
         >
           <Wordmark />

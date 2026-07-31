@@ -1,3 +1,6 @@
+"use client";
+
+import { m } from "framer-motion";
 import {
   ArrowDownNarrowWide,
   Crosshair,
@@ -13,7 +16,7 @@ import {
   UserCheck,
   type LucideIcon,
 } from "lucide-react";
-import { Reveal } from "@/components/motion/reveal";
+
 import { AButton } from "@/components/primitives/a-button";
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
@@ -27,12 +30,49 @@ const POINT_ICONS: Record<FeatureRowKey, readonly [LucideIcon, LucideIcon, Lucid
   handover: [Languages, Type, IndianRupee],
 };
 
+/* ---------------------------------------------------------------- animation variants --- */
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 100,
+      duration: 0.8,
+    },
+  },
+};
+
+const visualVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1], // Custom snappy ease-out
+    },
+  },
+};
+
 /* ---------------------------------------------------------------- mocks --- */
 /* Ref parity: each visual is a dense, believable product surface (toolbars,
    result rails, chips, badges) — not minimal line art. All decorative. */
 
-/** Scan surface: toolbar, result rail with score chips, dot-grid map with a
- *  lime route, pins, and a found-count badge. */
 function MapMock() {
   return (
     <svg viewBox="0 0 432 250" className="h-auto w-full" aria-hidden="true">
@@ -41,7 +81,6 @@ function MapMock() {
           <circle cx="3" cy="3" r="1.6" fill="#E3E6EA" />
         </pattern>
       </defs>
-      {/* toolbar: search field + filter chips */}
       <rect x="0" y="0" width="432" height="30" rx="8" fill="#F7F8F9" />
       <rect x="8" y="7" width="150" height="16" rx="8" fill="#FFFFFF" stroke="#E5E7EB" />
       <circle cx="18" cy="15" r="4" fill="none" stroke="#9CA3AF" strokeWidth="1.5" />
@@ -51,12 +90,10 @@ function MapMock() {
       <rect x="174" y="12" width="40" height="5" rx="2.5" fill="#5B7A2A" />
       <rect x="228" y="7" width="56" height="16" rx="8" fill="#FFFFFF" stroke="#E5E7EB" />
       <rect x="236" y="12" width="40" height="5" rx="2.5" fill="#C6CBD2" />
-      {/* found-count badge */}
       <rect x="366" y="7" width="58" height="16" rx="8" fill="#0F7B4B" />
       <text x="395" y="18.5" fontSize="10" fontWeight="600" fill="#FFFFFF" textAnchor="middle" fontFamily="Inter, sans-serif">
         38 found
       </text>
-      {/* result rail: three rows with score chips */}
       {[
         { y: 40, score: "18", chip: "#0F7B4B", text: "#FFFFFF" },
         { y: 84, score: "27", chip: "#CDE8A9", text: "#3C5220" },
@@ -74,15 +111,8 @@ function MapMock() {
         </g>
       ))}
       <rect x="0" y="172" width="150" height="10" rx="5" fill="#F3F4F6" />
-      {/* map area */}
       <rect x="158" y="38" width="274" height="212" rx="10" fill="url(#feat-map-dots)" />
-      <path
-        d="M190 220 C 240 196, 258 132, 310 134 C 352 136, 372 130, 408 84"
-        fill="none"
-        stroke="#9BC53D"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
+      <path d="M190 220 C 240 196, 258 132, 310 134 C 352 136, 372 130, 408 84" fill="none" stroke="#9BC53D" strokeWidth="3" strokeLinecap="round" />
       <circle cx="262" cy="158" r="4" fill="#9BC53D" />
       <circle cx="352" cy="132" r="4" fill="#9BC53D" />
       {[
@@ -91,10 +121,7 @@ function MapMock() {
         { x: 408, y: 84 },
       ].map((p) => (
         <g key={`${p.x}-${p.y}`} transform={`translate(${p.x} ${p.y})`}>
-          <path
-            d="M0 0 C -8 -11 -13 -17 -13 -25 a13 13 0 1 1 26 0 C 13 -17 8 -11 0 0 Z"
-            fill="#0F7B4B"
-          />
+          <path d="M0 0 C -8 -11 -13 -17 -13 -25 a13 13 0 1 1 26 0 C 13 -17 8 -11 0 0 Z" fill="#0F7B4B" />
           <circle cx="0" cy="-25" r="4.5" fill="#FFFFFF" />
         </g>
       ))}
@@ -106,7 +133,6 @@ function MapMock() {
   );
 }
 
-/** Scorecard: header row, 0–100 arc gauge, and a seven-signal checklist. */
 function ScoreMock() {
   const SIGNALS: ReadonlyArray<{ ok: boolean; w: number }> = [
     { ok: false, w: 92 },
@@ -119,7 +145,6 @@ function ScoreMock() {
   ];
   return (
     <svg viewBox="0 0 432 250" className="h-auto w-full" aria-hidden="true">
-      {/* header: shop bar + status chip */}
       <circle cx="16" cy="16" r="10" fill="#F3F4F6" />
       <rect x="34" y="8" width="90" height="6" rx="3" fill="#6B7280" />
       <rect x="34" y="20" width="58" height="5" rx="2.5" fill="#C6CBD2" />
@@ -127,21 +152,8 @@ function ScoreMock() {
       <text x="377" y="20" fontSize="10" fontWeight="600" fill="#B4483C" textAnchor="middle" fontFamily="Inter, sans-serif">
         below 40
       </text>
-      {/* gauge */}
-      <path
-        d="M52 176 A 88 88 0 0 1 228 176"
-        fill="none"
-        stroke="#E5E7EB"
-        strokeWidth="14"
-        strokeLinecap="round"
-      />
-      <path
-        d="M52 176 A 88 88 0 0 1 97 100"
-        fill="none"
-        stroke="#9BC53D"
-        strokeWidth="14"
-        strokeLinecap="round"
-      />
+      <path d="M52 176 A 88 88 0 0 1 228 176" fill="none" stroke="#E5E7EB" strokeWidth="14" strokeLinecap="round" />
+      <path d="M52 176 A 88 88 0 0 1 97 100" fill="none" stroke="#9BC53D" strokeWidth="14" strokeLinecap="round" />
       <line x1="140" y1="176" x2="110" y2="118" stroke="#1F2937" strokeWidth="3" strokeLinecap="round" />
       <circle cx="140" cy="176" r="6" fill="#1F2937" />
       <text x="46" y="200" fontSize="11" fill="#9CA3AF" fontFamily="Inter, sans-serif">0</text>
@@ -151,7 +163,6 @@ function ScoreMock() {
       </text>
       <rect x="92" y="228" width="96" height="16" rx="8" fill="#F3F4F6" />
       <rect x="104" y="234" width="72" height="4" rx="2" fill="#C6CBD2" />
-      {/* seven public signals */}
       <rect x="262" y="42" width="80" height="5" rx="2.5" fill="#9CA3AF" />
       {SIGNALS.map((s, i) => (
         <g key={i} transform={`translate(262 ${60 + i * 26})`}>
@@ -168,8 +179,6 @@ function ScoreMock() {
   );
 }
 
-/** Draft page: nav row, hero with CTA + grounded badge, fact-backed cards,
- *  and the dashed hidden block. */
 function DraftMock() {
   return (
     <div className="overflow-hidden rounded-lg border border-[#E5E7EB]" aria-hidden="true">
@@ -183,7 +192,6 @@ function DraftMock() {
         </span>
       </div>
       <div className="space-y-2.5 p-4">
-        {/* site nav row */}
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-2">
             <span className="size-4 rounded-full bg-[#0F7B4B]" />
@@ -195,7 +203,6 @@ function DraftMock() {
             <span className="h-1.5 w-6 rounded-full bg-[#D6DAE0]" />
           </span>
         </div>
-        {/* hero block */}
         <div className="rounded-md bg-[#F3F4F6] p-3">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
@@ -211,7 +218,6 @@ function DraftMock() {
             <span className="block h-1.5 w-12 rounded-full bg-white/80" />
           </span>
         </div>
-        {/* fact-backed rows */}
         {[0, 1].map((i) => (
           <div key={i} className="flex items-center gap-3 rounded-md border border-[#EDEFF2] bg-[#FAFBFC] p-2.5">
             <span className="size-8 shrink-0 rounded-md bg-[#E5E7EB]" />
@@ -224,7 +230,6 @@ function DraftMock() {
             </span>
           </div>
         ))}
-        {/* hidden block */}
         <div className="grid min-h-12 place-items-center rounded-md border-2 border-dashed border-[#CBD2DA] p-2">
           <span className="text-xs text-[#9CA3AF]">hidden until known</span>
         </div>
@@ -237,12 +242,9 @@ const QR_CELLS = [
   1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1,
 ] as const;
 
-/** Conversation surface: chat header, three bubbles with a draft-approve
- *  chip, then the QR grid and indicative-price chip. */
 function HandoverMock() {
   return (
     <div aria-hidden="true">
-      {/* chat header */}
       <div className="flex items-center gap-2.5 border-b border-[#EDEFF2] pb-3">
         <span className="relative size-8 rounded-full bg-[#F3F4F6]">
           <span className="absolute bottom-0 right-0 size-2 rounded-full border border-white bg-[#9BC53D]" />
@@ -300,49 +302,74 @@ export function Features() {
     <section id="features" className="relative overflow-x-clip pt-[140px]">
       <Container className="max-w-[1342px]">
         <SectionHeading title={FEATURES.title} lede={FEATURES.lede} />
-        {/* measured: per row — text/checklist blur-rise together on the row's
-            own entry; the visual fades opacity-only */}
+
         <div className="mt-[60px] divide-y divide-black/20">
-            <SectionDivider/>
+          <SectionDivider />
           {FEATURES.rows.map((row) => {
             const Mock = MOCKS[row.visual];
             return (
-              <div key={row.key} className="grid bg-surface-deep lg:min-h-[473px] lg:grid-cols-2 sticky top-[100px]">
-                <Reveal className="flex flex-col items-start justify-center p-10 lg:p-14">
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-lime">
+              <div
+                key={row.key}
+                className="grid bg-surface-deep lg:min-h-[473px] lg:grid-cols-2 sticky top-[100px]"
+              >
+                {/* 1. Staggered Text Column */}
+                <m.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-15%" }}
+                  variants={containerVariants}
+                  className="flex flex-col items-start justify-center p-10 lg:p-14"
+                >
+                  <m.p variants={fadeUpVariants as any} className="text-xs font-medium uppercase tracking-[0.18em] text-lime">
                     {row.layers}
-                  </p>
-                  <h3 className="mt-3 font-display text-[32px] font-semibold leading-[1.3] text-ink">
+                  </m.p>
+                  <m.h3 variants={fadeUpVariants as any} className="mt-3 font-display text-[32px] font-semibold leading-[1.3] text-ink">
                     {row.title}
-                  </h3>
-                  <p className="mt-3 max-w-md text-base leading-6 text-white/85">
+                  </m.h3>
+                  <m.p variants={fadeUpVariants as any} className="mt-3 max-w-md text-base leading-6 text-white/85">
                     {row.body}
-                  </p>
+                  </m.p>
+
                   <ul className="mt-8 flex flex-col gap-6">
                     {row.points.map((point, i) => {
                       const Icon = POINT_ICONS[row.key][i] ?? Map;
                       return (
-                        <li key={point} className="flex items-center gap-5">
+                        <m.li variants={fadeUpVariants as any} key={point} className="flex items-center gap-5">
                           <span className="grid size-11 shrink-0 place-items-center rounded-md bg-black/25">
                             <Icon className="size-5 text-lime" strokeWidth={1.8} />
                           </span>
                           <span className="max-w-md text-base leading-6 text-ink">
                             {point}
                           </span>
-                        </li>
+                        </m.li>
                       );
                     })}
                   </ul>
-                  <AButton href={FEATURES.cta.href} className="mt-10 w-fit">
-                    {FEATURES.cta.label}
-                  </AButton>
-                </Reveal>
+
+                  <m.div variants={fadeUpVariants as any} className="mt-10 w-fit">
+                    <AButton href={FEATURES.cta.href}>
+                      {FEATURES.cta.label}
+                    </AButton>
+                  </m.div>
+                </m.div>
+
+                {/* 2. Visual Column with slight hover interaction */}
                 <div className="stripes-lime flex items-center justify-center p-10 lg:p-12">
-                  <Reveal y={0} scale={1} blur={0} duration={0.65} className="w-full max-w-[480px]">
-                    <div className="rounded-xl bg-white p-6 shadow-[0_24px_48px_rgba(0,32,16,0.18)]">
-                      <Mock />
-                    </div>
-                  </Reveal>
+                  <m.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-15%" }}
+                    variants={visualVariants as any}
+                    whileHover={{ 
+                      y: -8, 
+                      scale: 1.02, 
+                      boxShadow: "0 32px 64px rgba(0,32,16,0.25)" 
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="w-full max-w-[480px] rounded-xl bg-white p-6 shadow-[0_24px_48px_rgba(0,32,16,0.18)] cursor-pointer"
+                  >
+                    <Mock />
+                  </m.div>
                 </div>
               </div>
             );

@@ -3,6 +3,9 @@ import { WordReveal } from "@/components/motion/word-reveal";
 import { AButton } from "@/components/primitives/a-button";
 import { Container } from "@/components/primitives/container";
 import { FINAL_CTA } from "@/content/final-cta";
+import { useEffect, useRef } from "react";
+import { Rive } from "@rive-app/canvas";
+
 
 /**
  * Closing CTA: measured Agentify section_cta — a light panel (593px tall,
@@ -15,14 +18,42 @@ import { FINAL_CTA } from "@/content/final-cta";
  * footer band follows immediately (measured seam).
  */
 export function FinalCta() {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    const rive = new Rive({
+      src: "/footer_desktop-V02.riv",
+      canvas: canvasRef.current,
+      autoplay: true,
+      
+    });
+
+    return () => {
+      rive.cleanup();
+    };
+  }, []);
+
+
+
   return (
     <section
       id="final-cta"
-      className="relative scroll-mt-24 overflow-x-clip pt-[140px]"
+      className="relative scroll-mt-24 overflow-x-clip py-[140px]"
     >
-      <Container>
-        <div className="relative bg-[#eef5f1] p-12 text-center lg:px-20 lg:py-[140px]">
-          {/* lime→teal wash, visible only near the panel edges */}
+      <Container className="max-w-[1300px] !px-0">
+        <div>
+          <figure>
+         <canvas
+      ref={canvasRef}
+      width={5000}
+      height={2035}
+      style={{ width: "100%", height: "100%" }}
+    />
+          </figure>
+        </div>
+        {/* <div className="relative bg-[#eef5f1] p-12 text-center lg:px-20 lg:py-[140px]">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
@@ -33,7 +64,6 @@ export function FinalCta() {
                 "linear-gradient(90deg, black 0%, transparent 28%, transparent 72%, black 100%)",
             }}
           />
-          {/* horizontal band structure over the wash, fading to the center */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
@@ -44,7 +74,6 @@ export function FinalCta() {
                 "linear-gradient(90deg, black 0%, transparent 30%, transparent 70%, black 100%)",
             }}
           />
-          {/* white center glow the heading sits on */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
@@ -73,7 +102,7 @@ export function FinalCta() {
               </div>
             </Reveal>
           </div>
-        </div>
+        </div> */}
       </Container>
     </section>
   );

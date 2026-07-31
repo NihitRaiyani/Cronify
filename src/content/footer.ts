@@ -16,9 +16,9 @@ type FooterColumn = {
 };
 
 export const FOOTER = {
-  wordmark: "lumora",
+  wordmark: "cronify",
   blurb:
-    "Lumora drafts honest bilingual sites for local shops with no web presence.",
+    "Cronify drafts honest bilingual sites for local shops with no web presence.",
   gujarati: "ગુજરાતની દુકાનો માટે",
   contactTitle: "Contact",
   socials: [
@@ -47,13 +47,13 @@ export const FOOTER = {
     {
       title: "Company",
       links: [
-        { label: "hello@lumora.example", href: "#", accent: true },
+        { label: "hello@cronify.example", href: "#", accent: true },
         { label: "Chat", href: "#" },
         { label: "Gujarat, India", href: "#" },
       ],
     },
   ],
-  copyright: "© 2026 Lumora",
+  copyright: "© 2026 Cronify",
   tagline: "Made for the shops the internet forgot.",
 } as const satisfies {
   wordmark: string;

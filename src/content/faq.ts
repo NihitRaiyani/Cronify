@@ -9,12 +9,12 @@ export const FAQ = {
   eyebrow: "FAQ",
   eyebrowGujarati: "સવાલો",
   title: "Asked, answered — honestly",
-  lede: "Six straight answers about what Lumora does, where its facts come from, and what it refuses to make up.",
+  lede: "Six straight answers about what Cronify does, where its facts come from, and what it refuses to make up.",
   items: [
     {
       key: "what",
-      q: "What is Lumora?",
-      a: "Lumora reads a local shop's public presence and turns it into a working demo website in Gujarati or English. Every shop moves through an eight-layer journey — from being discovered in public map listings to a page that keeps improving — and nothing is shared until a person has reviewed and approved it.",
+      q: "What is Cronify?",
+      a: "Cronify reads a local shop's public presence and turns it into a working demo website in Gujarati or English. Every shop moves through an eight-layer journey — from being discovered in public map listings to a page that keeps improving — and nothing is shared until a person has reviewed and approved it.",
     },
     {
       key: "journey",

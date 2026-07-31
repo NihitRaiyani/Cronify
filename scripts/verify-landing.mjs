@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * verify-landing.mjs — self-contained port of the Lumora verify-on-target contract,
+ * verify-landing.mjs — self-contained port of the Cronify verify-on-target contract,
  * run against this landing page. The JSON verdict is the only ground truth.
  *
  * Usage: node scripts/verify-landing.mjs <url> [label] [expectText] [outDir]
