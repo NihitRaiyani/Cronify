@@ -18,6 +18,7 @@ import { AButton } from "@/components/primitives/a-button";
 import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
 import { FEATURES, type FeatureRowKey, type FeatureVisual } from "@/content/features";
+import { SectionDivider } from "../primitives/section-divider";
 
 const POINT_ICONS: Record<FeatureRowKey, readonly [LucideIcon, LucideIcon, LucideIcon]> = {
   discover: [Map, Link2, Inbox],
@@ -297,15 +298,16 @@ const MOCKS: Record<FeatureVisual, () => React.ReactNode> = {
 export function Features() {
   return (
     <section id="features" className="relative overflow-x-clip pt-[140px]">
-      <Container>
+      <Container className="max-w-[1342px]">
         <SectionHeading title={FEATURES.title} lede={FEATURES.lede} />
         {/* measured: per row — text/checklist blur-rise together on the row's
             own entry; the visual fades opacity-only */}
         <div className="mt-[60px] divide-y divide-black/20">
+            <SectionDivider/>
           {FEATURES.rows.map((row) => {
             const Mock = MOCKS[row.visual];
             return (
-              <div key={row.key} className="grid bg-surface-deep lg:min-h-[473px] lg:grid-cols-2">
+              <div key={row.key} className="grid bg-surface-deep lg:min-h-[473px] lg:grid-cols-2 sticky top-[100px]">
                 <Reveal className="flex flex-col items-start justify-center p-10 lg:p-14">
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-lime">
                     {row.layers}

@@ -1,3 +1,4 @@
+"use client"
 import {
   BookOpen,
   Gauge,
@@ -16,6 +17,7 @@ import { Container } from "@/components/primitives/container";
 import { SectionHeading } from "@/components/primitives/section-heading";
 import { HOW_IT_WORKS, type LayerKey } from "@/content/how-it-works";
 import { cn } from "@/lib/utils";
+import { useEffect, useRef } from "react";
 
 const ICONS: Record<LayerKey, LucideIcon> = {
   discover: Search,
@@ -110,6 +112,14 @@ function JourneyLine() {
 }
 
 export function HowItWorks() {
+    const videoRef = useRef(null);
+
+     useEffect(() => {
+    if (videoRef?.current) {
+      videoRef.current.playbackRate = 0.60;
+    }
+  }, []);
+
   return (
     <section
       id="how-it-works"
@@ -129,17 +139,11 @@ export function HowItWorks() {
           <Reveal className="relative min-h-[520px] overflow-hidden bg-surface-deep lg:min-h-[640px]">
             <ScrubScale className="absolute inset-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/hero-dusk-panorama-1920.webp"
-                alt=""
-                width={1920}
-                height={1080}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-                className="h-full w-full object-cover"
-                style={{ objectPosition: "70% 35%" }}
-              />
+              <video ref={videoRef} muted autoPlay loop playsInline className="h-full w-full object-cover">
+                <source src="/Glowing_PCB_traces_pulsing_data_202607271829.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
               <div
                 aria-hidden
                 className="absolute inset-0 bg-[#002010]/60 mix-blend-multiply"
@@ -152,7 +156,7 @@ export function HowItWorks() {
             <h3 className="relative z-10 whitespace-pre-line p-8 font-display text-2xl font-medium leading-snug text-ink">
               {HOW_IT_WORKS.panel.heading}
             </h3>
-            <JourneyLine />
+            {/* <JourneyLine /> */}
             <AButton
               href={HOW_IT_WORKS.panel.cta.href}
               className="absolute bottom-8 left-8 z-10"

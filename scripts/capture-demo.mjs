@@ -4,7 +4,7 @@
  *
  * Pinned viewport + DPR so captures are reproducible. Headless page pixels
  * only — no browser chrome, no URL text baked into the image.
- * Writes public/demo/showcase-overview.webp (wide) and -portrait.webp (tall);
+ * Writes public/demo/showcase-overview.png (wide) and -portrait.webp (tall);
  * the section uses whichever fits the card slot.
  */
 import { chromium } from "playwright";
@@ -42,7 +42,7 @@ await capture({
   width: 1440,
   height: 900,
   displayWidth: 1400,
-  out: "public/demo/showcase-overview.webp",
+  out: "public/demo/showcase-overview.png",
 });
 
 await browser.close();

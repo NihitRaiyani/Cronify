@@ -71,7 +71,7 @@ function DemoMock() {
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/demo/showcase-overview.webp"
+        src="/demo/showcase-overview.png"
         alt={SHOWCASE.mockAlt}
         width={1400}
         height={875}
@@ -97,19 +97,19 @@ export function ProductShowcase() {
 
         {/* full-container warm scene panel — media block scrubs 1.3→1 */}
         <Reveal>
-          <div className="relative mt-[60px] overflow-hidden lg:h-[680px]">
-            <ScrubScale className="absolute inset-0">
+          <div className="relative mt-[60px] overflow-hidden lg:h-[618px] bg-[url(/demo/showcase-overview.png)] bg-no-repeat bg-contain">
+            {/* <ScrubScale className="absolute inset-0">
               <WarmScene />
-            </ScrubScale>
-            <div className="relative flex flex-col items-start gap-8 p-6 sm:p-10 lg:static lg:p-0">
-              <p className="max-w-md font-sans text-base font-semibold leading-6 text-ink lg:absolute lg:left-6 lg:top-10">
+            </ScrubScale> */}
+            <div className="relative flex flex-col items-start gap-8 p-6 sm:p-10 !pb-[250px] lg:static lg:p-0">
+              {/* <p className="max-w-md font-sans text-base font-semibold leading-6 text-ink lg:absolute lg:left-6 lg:top-10">
                 {SHOWCASE.overlay}
-              </p>
+              </p> */}
               <div className="lg:absolute lg:bottom-[120px] lg:left-6">
-                <AButton href="#">{SHOWCASE.cta}</AButton>
+                <AButton href="https://purevanawellness.com/">{SHOWCASE.cta}</AButton>
               </div>
               <div className="w-full max-w-[420px] lg:absolute lg:right-24 lg:top-1/2 lg:w-[420px] lg:-translate-y-1/2">
-                <DemoMock />
+                {/* <DemoMock /> */}
               </div>
             </div>
           </div>

@@ -49,10 +49,10 @@ export function FromTheField() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/hero-dusk-panorama-1920.webp"
+                  src="/hero-dusk-panorama-2048.avif"
                   alt=""
-                  width={1920}
-                  height={1080}
+                  width={2048}
+                  height={1152}
                   loading="lazy"
                   decoding="async"
                   draggable={false}
@@ -61,10 +61,10 @@ export function FromTheField() {
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/hero-dusk-panorama-1920.webp"
+                  src="/hero-dusk-panorama-2048.avif"
                   alt=""
-                  width={1920}
-                  height={1080}
+                  width={2048}
+                  height={1152}
                   loading="lazy"
                   decoding="async"
                   draggable={false}

@@ -1,3 +1,8 @@
+"use client";
+
+import "lenis/dist/lenis.css";
+import { ReactLenis } from "lenis/react";
+
 import { AiWorkflow } from "@/components/sections/ai-workflow";
 import { BuiltFor } from "@/components/sections/built-for";
 import { Faq } from "@/components/sections/faq";
@@ -26,7 +31,8 @@ function PageLines() {
 
 export default function Home() {
   return (
-    <>
+    // The 'root' prop tells Lenis to take over the document's main scrollbar
+    <ReactLenis root options={{ lerp: 1.0, duration: 1.5, smoothWheel: true }}>
       <Navbar />
       <main id="main">
         <Hero />
@@ -56,6 +62,6 @@ export default function Home() {
         </div>
       </main>
       <Footer />
-    </>
+    </ReactLenis>
   );
 }

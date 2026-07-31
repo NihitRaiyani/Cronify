@@ -127,13 +127,17 @@
 }
 
 @theme {
-  /* measured ref marquee speed: ~85px/s (half-track 1518px ÷ 85 ≈ 18s) */
+  /* Measured ref marquee speed: ~85px/s (one 1518px set ÷ 85 ≈ 18s). The
+     Marquee primitive sets animation-duration inline when it renders more than
+     one set per half, so pixel speed stays put as the track grows. (It has to
+     be the longhand: a var() nested in a @theme value resolves against :root,
+     not the element, so a custom property here would never see the override.) */
   --animate-marquee: marquee 18s linear infinite;
   --animate-dash: dash 3s linear infinite;
 
   @keyframes marquee {
     to {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
   @keyframes dash {

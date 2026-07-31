@@ -1,45 +1,58 @@
 /**
- * One-shot hero asset prep: 3840×2160 source PNGs → responsive webp.
+ * One-shot hero asset prep: the supplied source AVIF/SVG set → the responsive
+ * files the hero ships.
  *   node scripts/prep-hero-assets.mjs
  *
- * Panorama (opaque)  → hero-dusk-panorama-{2880,1920,1024}.webp
- * Peak cutout (alpha) → trimmed to its bounding box, then hero-peak-cutout-{2200,1280}.webp
- * Prints the cutout trim box — the hero <img> needs those numbers for width/height.
+ * Panorama (opaque)              → hero-dusk-panorama-{2048,1024}.avif
+ * Peak cutout (alpha, UNTRIMMED) → hero-peak-cutout-{2048,1024}.avif
+ * Journey line                   → hero-journey-line.svg (verbatim copy)
+ *
+ * The cutout is deliberately NOT trimmed to its alpha bounding box. It shares
+ * the journey line's source canvas (cutout 3840x2160 downscaled to 2048x1152,
+ * line 3840x2100 — same width, 60px trimmed off the bottom), so rendering both
+ * at width:100% inside one box registers the line onto the ridge with no
+ * offsets at all. Trimming destroys that relationship and puts us back to
+ * hand-tuned magic numbers.
+ *
+ * Uses sips (macOS built-in) rather than sharp: sharp is only present here
+ * transitively via next, so importing it directly is a dependency we don't own.
  */
-import sharp from "sharp";
+import { execFileSync } from "node:child_process";
+import { copyFileSync, statSync } from "node:fs";
 
-const SRC_PANORAMA = "public/UG7DO77CykOXq0OIDltEMrQUh4.png";
-const SRC_CUTOUT = "public/lBbSywiWIms0ThszzT2DJpKvUM.png";
+const SRC_PANORAMA = "public/UG7DO77CykOXq0OIDltEMrQUh4.avif";
+const SRC_CUTOUT = "public/lBbSywiWIms0ThszzT2DJpKvUM.avif";
+const SRC_LINE = "public/knFgtQU9L40WUn6kC2QqKqcjBoA.svg";
+
+/** Sources are 2048 wide; 1024 is the mobile/tablet step. */
+const WIDTHS = [2048, 1024];
 
 const kb = (n) => `${Math.round(n / 1024)}KB`;
 
-for (const [w, quality] of [
-  [2880, 72],
-  [1920, 75],
-  [1024, 75],
-]) {
-  const out = `public/hero-dusk-panorama-${w}.webp`;
-  const info = await sharp(SRC_PANORAMA)
-    .resize({ width: w })
-    .webp({ quality, effort: 6 })
-    .toFile(out);
-  console.log(`${out}  ${info.width}x${info.height}  ${kb(info.size)}`);
+function probe(file) {
+  const out = execFileSync("sips", ["-g", "pixelWidth", "-g", "pixelHeight", file], {
+    encoding: "utf8",
+  });
+  const get = (k) => Number(out.match(new RegExp(`${k}: (\\d+)`))?.[1]);
+  return { width: get("pixelWidth"), height: get("pixelHeight") };
 }
 
-const { data: trimmedPng, info: t } = await sharp(SRC_CUTOUT)
-  .trim({ background: { r: 0, g: 0, b: 0, alpha: 0 } })
-  .png()
-  .toBuffer({ resolveWithObject: true });
-console.log(
-  `cutout trim box: left=${-t.trimOffsetLeft} top=${-t.trimOffsetTop} ` +
-    `width=${t.width} height=${t.height} (source 3840x2160, aspect ${(t.width / t.height).toFixed(4)})`
-);
-
-for (const w of [2200, 1280]) {
-  const out = `public/hero-peak-cutout-${w}.webp`;
-  const info = await sharp(trimmedPng)
-    .resize({ width: Math.min(w, t.width) })
-    .webp({ quality: 75, alphaQuality: 90, effort: 6 })
-    .toFile(out);
-  console.log(`${out}  ${info.width}x${info.height}  ${kb(info.size)}`);
+function emit(src, width, out) {
+  if (width >= probe(src).width) {
+    copyFileSync(src, out); // already at or below target — never upscale
+  } else {
+    execFileSync("sips", [
+      "-s", "format", "avif",
+      "--resampleWidth", String(width),
+      src, "--out", out,
+    ]);
+  }
+  const { width: w, height: h } = probe(out);
+  console.log(`${out}  ${w}x${h}  ${kb(statSync(out).size)}`);
 }
+
+for (const w of WIDTHS) emit(SRC_PANORAMA, w, `public/hero-dusk-panorama-${w}.avif`);
+for (const w of WIDTHS) emit(SRC_CUTOUT, w, `public/hero-peak-cutout-${w}.avif`);
+
+copyFileSync(SRC_LINE, "public/hero-journey-line.svg");
+console.log(`public/hero-journey-line.svg  ${kb(statSync("public/hero-journey-line.svg").size)}`);

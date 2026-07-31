@@ -5,7 +5,7 @@ or agentify-template.webflow.io (body). Everything else is rebuilt to measuremen
 
 | # | section | deviation | why it is an improvement |
 |---|---------|-----------|--------------------------|
-| 1 | showcase | Replaced the fictional Gujarati demo-site wireframe with a real capture of a live generated demo (`public/demo/showcase-overview.webp`) inside the same CSS browser chrome | A real capture proves the product output instead of illustrating it; the lede copy was updated so it no longer claims "no real shop is shown" |
+| 1 | showcase | Replaced the fictional Gujarati demo-site wireframe with a real capture of a live generated demo (`public/demo/showcase-overview.png`) inside the same CSS browser chrome | A real capture proves the product output instead of illustrating it; the lede copy was updated so it no longer claims "no real shop is shown" |
 | 2 | hero | The layered SVG ridge art is gone; the scene is now our own dusk photography (opaque panorama background + alpha-cutout foreground peak), with the lime journey line relocated over the photographed ridge | Matches the ref's photographic composition with assets we own — no reference-site files shipped |
 | 3 | hero | Entrance choreography starts at hydration with no added base delay; the ref's shared start lands ~710ms post-navigation because that is when its JS runs | Same landing order/durations/easing without artificially freezing the hero for 0.7s |
 | 4 | navbar | Scrolled state flips to our dark body surface (#0E0D14/85 + blur) instead of the ref's solid white | The ref's body is white, ours is Agentify near-black; flipping to the body surface is the same design move in our palette |
