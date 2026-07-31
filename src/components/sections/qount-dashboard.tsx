@@ -56,12 +56,12 @@ export function QountDashboard() {
   }, []);
 
   return (
-    <div className="w-full aspect-[4/3] max-w-[850px] mx-auto relative">
+    <div className="w-full max-w-[850px] mx-auto relative">
       <figure className="relative w-full h-full">
         <canvas
           ref={canvasRef}
-          width={1600}
-          height={1200}
+          width={1200}
+          height={1000}
           className="w-full h-full"
         />
       </figure>

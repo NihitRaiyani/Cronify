@@ -24,7 +24,7 @@ export function QountHero() {
             <Stagger inView={false} step={0.08} className="flex flex-col gap-6">
 
               <StaggerItem duration={0.8} ease={HERO_EASE}>
-                <h1 className="font-sans text-[36px] sm:text-[46px] md:text-[54px] xl:text-[52px] font-bold leading-[1.1] tracking-tight text-white">
+                <h1 className="font-sans text-[36px] sm:text-[46px] md:text-[54px] xl:text-[42px] font-semibold leading-[1.1] tracking-tight text-white">
                   Accounting Practice Management That Turns Your Firm Data into Intelligence
                 </h1>
               </StaggerItem>
