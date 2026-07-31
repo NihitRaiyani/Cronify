@@ -10,7 +10,7 @@ export function QountDashboard() {
     if (!canvasRef.current) return;
 
     // Fetch and scan Rive binary for ASCII strings (artboard names, inputs, etc.)
-    fetch("/hero_desktop_V05.riv")
+    fetch("/hero_desktop_V05_cronify.riv")
       .then((res) => res.arrayBuffer())
       .then((buffer) => {
         const bytes = new Uint8Array(buffer);
@@ -32,7 +32,7 @@ export function QountDashboard() {
       .catch((err) => console.error("Error reading Rive binary:", err));
 
     const rive = new Rive({
-      src: "/hero_desktop_V05.riv",
+      src: "/hero_desktop_V05_cronify.riv",
       canvas: canvasRef.current,
       autoplay: true,
       stateMachines: "State Machine 1",
