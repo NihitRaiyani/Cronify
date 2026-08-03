@@ -37,7 +37,7 @@ export default function Home() {
       <main id="main">
         <CronifyHero />
         {/* body order mirrors the measured reference */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <PageLines />
           <SectionDivider />
           <BuiltFor />
