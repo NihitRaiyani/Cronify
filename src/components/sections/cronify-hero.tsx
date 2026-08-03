@@ -11,7 +11,7 @@ export function CronifyHero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full bg-[#0b0b0c] pt-[120px] pb-[80px] lg:pt-[100px] lg:pb-[100px] overflow-hidden flex items-center"
+      className="relative min-h-screen w-full pt-[120px] pb-[80px] lg:pt-[100px] lg:pb-[100px] overflow-hidden flex items-center"
     >
       {/* Subtle background glow */}
       <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[#ccff00]/[0.01] rounded-full blur-[150px] pointer-events-none" />
