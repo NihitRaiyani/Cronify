@@ -1,8 +1,8 @@
 export const HERO = {
-  titleLine1: "Eight layers between",
-  titleLine2: "invisible and online.",
-  sub: "Eight automated layers walk a shop from discovery to an honest demo site — and onward, in Gujarati or English.",
-  cta: { label: "Walk the layers", href: "#how-it-works" },
+  titleLine1: "Pitch the finished website.",
+  titleLine2: "Not the service.",
+  sub: "Discover invisible shops, generate bilingual demo sites automatically, and sell with a finished product — all from one eight-layer engine.",
+  cta: { label: "See the 8 layers", href: "#how-it-works" },
   console: {
     title: "Presence scan",
     scope: "Surat · Salons",
@@ -10,7 +10,7 @@ export const HERO = {
     stats: [
       { value: "38", label: "Shops scanned" },
       { value: "12", label: "Score below 40" },
-      { value: "4", label: "Demos drafted" },
+      { value: "4", label: "Demos generated" },
     ],
     columns: { name: "Shop", area: "Area", score: "Score" },
     rows: [

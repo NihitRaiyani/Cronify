@@ -3,14 +3,14 @@
 import { useEffect, useRef } from "react";
 import { m } from "framer-motion";
 import {
-  BookOpen,
-  Gauge,
-  MessagesSquare,
-  PenLine,
-  QrCode,
+  Key,
   Search,
-  Sprout,
-  UserCheck,
+  Gauge,
+  Wand2,
+  MessageCircle,
+  Globe,
+  Megaphone,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,14 +22,14 @@ import { HOW_IT_WORKS, type LayerKey } from "@/content/how-it-works";
 import { cn } from "@/lib/utils";
 
 const ICONS: Record<LayerKey, LucideIcon> = {
-  discover: Search,
-  understand: BookOpen,
-  score: Gauge,
-  draft: PenLine,
-  review: UserCheck,
-  share: QrCode,
-  converse: MessagesSquare,
-  grow: Sprout,
+  accounts: Key,
+  discovery: Search,
+  scoring: Gauge,
+  generation: Wand2,
+  whatsapp: MessageCircle,
+  seo: Globe,
+  campaigns: Megaphone,
+  leads: TrendingUp,
 };
 
 /* ---------------------------------------------------------------- animation variants --- */

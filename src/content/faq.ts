@@ -1,45 +1,43 @@
 /**
  * Copy for the FAQ accordion. Answers stay grounded in how the product
- * actually behaves — the eight-layer journey, public listings only,
- * Gujarati/English, and the draft → review → approve gate. No promises,
- * no invented numbers.
+ * actually behaves for agencies and freelancers using the demo-first approach.
  */
 
 export const FAQ = {
   eyebrow: "FAQ",
   eyebrowGujarati: "સવાલો",
-  title: "Asked, answered — honestly",
-  lede: "Six straight answers about what Cronify does, where its facts come from, and what it refuses to make up.",
+  title: "Everything you need to know",
+  lede: "Six straight answers about how Cronify helps you discover leads, generate demos, and close website deals.",
   items: [
     {
       key: "what",
       q: "What is Cronify?",
-      a: "Cronify reads a local shop's public presence and turns it into a working demo website in Gujarati or English. Every shop moves through an eight-layer journey — from being discovered in public map listings to a page that keeps improving — and nothing is shared until a person has reviewed and approved it.",
+      a: "Cronify is a complete pipeline for web design agencies and freelancers. It finds local businesses with no website, scores their online presence, and automatically generates a personalized demo website you can pitch them with.",
     },
     {
       key: "journey",
       q: "How does the eight-layer journey work?",
-      a: "In order: 01 Discover finds the shop in public listings, 02 Understand reads what those listings say, 03 Score rates its presence from 0 to 100, 04 Draft builds the demo site, 05 Review puts a person in the loop, 06 Share hands the owner one link, 07 Converse carries the conversation that follows, and 08 Grow tracks what changes after.",
+      a: "In order: 01 Accounts & Access, 02 Discovery & Data, 03 Presence Scoring, 04 Website Generation, 05 WhatsApp & Voice Agent, 06 SEO, 07 Campaigns, and 08 Marketing & Leads. Every step is automated.",
     },
     {
       key: "source",
-      q: "Where does the information come from?",
-      a: "Only from public listings — the seven public signals a shop already shows the internet: name, category, location, hours, photos, reviews, and contact details. If a signal was never found, the section that needs it stays hidden instead of being filled in.",
+      q: "Where does the data for the websites come from?",
+      a: "From public map listings and social profiles. We read their name, category, location, hours, photos, reviews, and contact details to generate a highly accurate, honest demo site.",
     },
     {
       key: "language",
-      q: "Which languages does it write in?",
-      a: "Gujarati and English, chosen by a pincode → locality → city cascade — urban areas usually resolve to English, rural ones to Gujarati. Shop names are transliterated, never translated: વેદાંત stays Vedant on the page.",
+      q: "Which languages does it support?",
+      a: "We currently support English and Gujarati. The language is intelligently chosen based on the business's location (e.g., urban vs rural) so you always pitch in the language the owner prefers.",
     },
     {
       key: "truth",
-      q: "Can a demo say something untrue?",
-      a: "It is built not to. A claim firewall blocks invented facts, any section missing its fact stays hidden rather than guessed, and every draft passes a human review gate before it can be approved and shared.",
+      q: "Do I have to pitch them manually?",
+      a: "No. Cronify sends the finished demo straight to the prospect via WhatsApp, complete with sequenced campaign messages and an AI voice agent that can handle the initial conversation.",
     },
     {
       key: "cost",
       q: "What does it cost?",
-      a: "The first three layers — Discover, Understand, Score — cost nothing for one city. Paid plans are in rupees (₹) and begin when drafting starts; the full breakdown sits in the pricing section above.",
+      a: "You can start generating your first leads and scoring them for free. Paid plans start when you begin generating and sending demos at scale. Full breakdown in the pricing section.",
     },
   ],
 } as const;

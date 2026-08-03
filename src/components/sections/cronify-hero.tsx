@@ -1,12 +1,13 @@
 "use client";
 
 import * as m from "motion/react-m";
-import { QountDashboard } from "./qount-dashboard";
+import { CronifyDashboard } from "./cronify-dashboard";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { AButton } from "@/components/primitives/a-button";
 
 const HERO_EASE = [0.16, 1, 0.3, 1] as const;
 
-export function QountHero() {
+export function CronifyHero() {
   return (
     <section
       id="hero"
@@ -31,7 +32,7 @@ export function QountHero() {
 
               <StaggerItem duration={0.8} ease={HERO_EASE}>
                 <p className="font-sans text-[15px] sm:text-[16px] leading-[1.6] text-white/60 font-normal">
-                  Qount unifies operational, performance, and client data across the
+                  Cronify unifies operational, performance, and client data across the
                   practice management platform and connected third-party systems, so
                   firms can predict risk earlier, optimize execution, improve margin,
                   and accelerate growth.
@@ -40,18 +41,12 @@ export function QountHero() {
 
               <StaggerItem duration={0.8} ease={HERO_EASE}>
                 <div className="flex flex-wrap items-center gap-4 mt-2">
-                  <a
-                    href="#demo"
-                    className="inline-flex h-11 items-center justify-center rounded-full bg-[#ccff00] px-7 font-sans text-[14px] font-bold text-black transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] hover:shadow-[0_4px_25px_rgba(204,255,0,0.25)]"
-                  >
-                    Get Demo
-                  </a>
-                  <a
-                    href="#features"
-                    className="inline-flex h-11 items-center justify-center rounded-full bg-white px-7 font-sans text-[14px] font-bold text-black transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
-                  >
+                  <AButton href="#demo">
+                    Demo
+                  </AButton>
+                  <AButton href="#features" variant="light" arrow={false}>
                     Explore Features
-                  </a>
+                  </AButton>
                 </div>
               </StaggerItem>
 
@@ -66,7 +61,7 @@ export function QountHero() {
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="w-full max-w-[680px] xl:max-w-none"
             >
-              <QountDashboard />
+              <CronifyDashboard />
             </m.div>
           </div>
 

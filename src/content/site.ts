@@ -7,9 +7,9 @@
 
 export const SITE = {
   name: "Cronify",
-  tagline: "Websites for invisible local businesses",
+  tagline: "Demo-first websites for invisible local businesses",
   oneLiner:
-    "An eight-layer automation journey: find local shops with no website, understand and score their presence, draft an honest local-language demo, then share, converse, and grow.",
+    "Stop cold pitching. Discover invisible shops, measure their presence, and automatically generate a personalized demo website in their own language—before you ever contact them.",
   nav: [
     { label: "The journey", href: "#how-it-works" },
     { label: "Features", href: "#features" },
@@ -18,6 +18,6 @@ export const SITE = {
     { label: "FAQ", href: "#faq" },
   ],
   // Frontend-only build: CTAs are visual placeholders by design.
-  cta: { label: "See a demo", href: "#" },
+  cta: { label: "Start your trial", href: "#" },
   secondaryCta: { label: "Get early access", href: "#" },
 } as const;

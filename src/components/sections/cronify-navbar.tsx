@@ -5,17 +5,18 @@ import { AnimatePresence, useMotionValueEvent, useScroll } from "motion/react";
 import * as m from "motion/react-m";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AButton } from "@/components/primitives/a-button";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { label: "Product", href: "#product" },
   { label: "Practice Intelligence", href: "#intelligence" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Qount", href: "#qount" },
+  { label: "Cronify", href: "#cronify" },
   { label: "Resources", href: "#resources" },
 ];
 
-export function QountNavbar() {
+export function CronifyNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -36,7 +37,7 @@ export function QountNavbar() {
       <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between gap-4 px-6 md:px-10">
         {/* Logo */}
         <a href="#" className="flex items-center rounded-md outline-none">
-          <img src="/qount-logo.png" alt="Qount Logo" className="h-10 w-full" />
+          <img src="/cronify-logo-full.png" alt="Cronify Logo" className="h-10 w-full" />
           {/* <span className="font-sans text-[20px] font-bold tracking-[0.1em] text-white">
             LOGO
           </span> */}
@@ -59,18 +60,12 @@ export function QountNavbar() {
 
         {/* CTA Buttons (Desktop) */}
         <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="#demo"
-            className="inline-flex h-9 items-center justify-center rounded-full bg-white px-5 font-sans text-xs font-semibold text-black transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
-          >
-            Get Demo
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex h-9 items-center justify-center rounded-full bg-[#ccff00] px-5 font-sans text-xs font-semibold text-black transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] hover:shadow-[0_0_20px_rgba(204,255,0,0.3)]"
-          >
+          <AButton href="#demo" className="scale-90 hover:scale-[0.93] active:scale-[0.88] origin-right">
+            Demo
+          </AButton>
+          <AButton href="#contact" variant="light" arrow={false} className="scale-90 hover:scale-[0.93] active:scale-[0.88] origin-left">
             Contact us
-          </a>
+          </AButton>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -110,20 +105,12 @@ export function QountNavbar() {
                 </a>
               ))}
               <div className="mt-4 flex flex-col gap-3">
-                <a
-                  href="#demo"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-white font-sans text-sm font-semibold text-black"
-                >
-                  Get Demo
-                </a>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#ccff00] font-sans text-sm font-semibold text-black"
-                >
+                <AButton href="#demo" className="w-full max-w-[200px]">
+                  Demo
+                </AButton>
+                <AButton href="#contact" variant="light" arrow={false} className="w-full max-w-[200px]" onClick={() => setOpen(false)}>
                   Contact us
-                </a>
+                </AButton>
               </div>
             </div>
           </m.div>

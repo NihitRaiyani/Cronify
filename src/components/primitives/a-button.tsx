@@ -7,6 +7,7 @@ type AButtonProps = {
   variant?: "lime" | "light";
   className?: string;
   arrow?: boolean;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 /**
@@ -21,6 +22,7 @@ export function AButton({
   variant = "lime",
   className,
   arrow = true,
+  onClick,
 }: AButtonProps) {
   const label = (
     <>
@@ -31,6 +33,7 @@ export function AButton({
   return (
     <a
       href={href}
+      onClick={onClick}
       className={cn(
         "group relative inline-flex h-12 items-center justify-center px-6 font-sans text-base font-medium text-ink-inverse",
         variant === "lime" ? "frame-lime" : "frame-light",

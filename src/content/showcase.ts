@@ -1,11 +1,11 @@
 export const SHOWCASE = {
-  eyebrow: "Showcase",
+  eyebrow: "The Pitch",
   eyebrowGujarati: "નમૂનો",
-  title: "A demo in the shop's own language",
-  lede: "A one-page draft written from public facts, in Gujarati or English — shown here as a live capture of a generated demo.",
+  title: "The finished website is your pitch",
+  lede: "A complete, personalized draft written from their own public facts, in Gujarati or English — delivered straight to the prospect before they're ever contacted.",
   overlay:
-    "A draft page the owner can read without switching languages — hidden wherever a fact is unknown.",
-  cta: "See a demo",
+    "A generated page the owner can read without switching languages, fully optimized for local search.",
+  cta: "See an example",
   mockAlt:
     "Capture of a live generated demo page for a salon: headline in the shop's own voice, booking and services actions, and an arched storefront photo.",
   mock: {
@@ -14,16 +14,16 @@ export const SHOWCASE = {
   },
   points: [
     {
-      title: "Two languages, decided honestly",
-      body: "Gujarati or English is read from how the shop already writes in public — the page follows the shop, not a default locale.",
+      title: "Real data, bespoke design",
+      body: "Every demo is built from real business data, not generic placeholders. It is designed to look bespoke — never like a template.",
     },
     {
-      title: "Sections earn their place",
-      body: "A section appears only when one of the seven public signals backs it. No grounded fact, no section — it stays hidden and says so.",
+      title: "Two languages, honestly decided",
+      body: "Gujarati for rural areas, English for urban ones. The demo meets the shop owner where they are.",
     },
     {
-      title: "Approved before anyone sees it",
-      body: "Every page holds at 05 Review: the owner reads, edits and approves the draft — only then does 06 Share put it in front of customers.",
+      title: "Split-screen editor",
+      body: "The freelancer or agency can tweak any section in the live editor before sending the demo to the prospect.",
     },
   ],
 } as const;

@@ -1,5 +1,5 @@
 export const BUILT_FOR = {
-  kicker: "Cronify — built for the shops on every main road",
+  kicker: "Cronify — pitch to the shops on every main road",
   kickerGujarati: "દરેક બજારની દુકાન માટે",
   verticals: [
     { key: "restaurant", label: "Restaurants & cafés", gujarati: "રેસ્ટોરન્ટ" },

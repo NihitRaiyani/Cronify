@@ -1,7 +1,6 @@
 /**
- * Copy for the site footer. Copy rules (enforced by scripts/check-copy.mjs):
- * no claim terms, no dollar signs, nothing invented — say what a thing is and
- * where it is, never how good it is. Contact entries are visual placeholders.
+ * Copy for the site footer. 
+ * Contact entries are visual placeholders.
  */
 
 type FooterLink = {
@@ -18,8 +17,8 @@ type FooterColumn = {
 export const FOOTER = {
   wordmark: "cronify",
   blurb:
-    "Cronify drafts honest bilingual sites for local shops with no web presence.",
-  gujarati: "ગુજરાતની દુકાનો માટે",
+    "Cronify is the demo-first pipeline for web design agencies and freelancers.",
+  gujarati: "એજન્સીઓ માટે",
   contactTitle: "Contact",
   socials: [
     { label: "Facebook", href: "#" },
@@ -39,9 +38,9 @@ export const FOOTER = {
     {
       title: "Quick Links",
       links: [
-        { label: "Claim firewall", href: "#features" },
-        { label: "Review gate", href: "#ai-workflow" },
-        { label: "Score signals", href: "#how-it-works" },
+        { label: "Lead Scoring", href: "#how-it-works" },
+        { label: "WhatsApp Agents", href: "#features" },
+        { label: "Agency Workspace", href: "#ai-workflow" },
       ],
     },
     {
@@ -54,7 +53,7 @@ export const FOOTER = {
     },
   ],
   copyright: "© 2026 Cronify",
-  tagline: "Made for the shops the internet forgot.",
+  tagline: "Stop cold pitching. Start demoing.",
 } as const satisfies {
   wordmark: string;
   blurb: string;

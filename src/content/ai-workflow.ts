@@ -3,55 +3,55 @@
  *  firewall, validated content only, draft → review → approve, seven public
  *  signals, the 0–100 score, Gujarati/English. */
 export const AI_WORKFLOW = {
-  title: "One journey, four working modes",
-  lede: "Eight layers run underneath, from discover to grow. Pick the mode that meets your day — the journey stays the same.",
+  title: "Your entire agency workflow, inside one tool",
+  lede: "Everything an agency needs to source, pitch, and close web design clients at scale without the cold outreach.",
   modes: [
     {
       key: "discovery",
-      label: "Discovery runs",
+      label: "Prospecting",
       icon: "radar",
       heading:
-        "Finds a business in public map listings and reads what it already shows the world.",
+        "Find invisible local businesses and prioritize them by their presence score.",
       points: [
-        "Starts from public map listings, not private data.",
-        "Reads seven public signals for every business.",
-        "Builds understanding before anything is written.",
+        "Automatically build lead lists in your workspace.",
+        "Spot the businesses with the lowest presence scores.",
+        "Clean, de-duplicated data ready for outreach.",
       ],
     },
     {
       key: "scoring",
-      label: "Scoring desk",
+      label: "Generation",
       icon: "gauge",
       heading:
-        "Turns seven public signals into one presence score you can read at a glance.",
+        "Turn an invisible prospect into a finished demo website in seconds.",
       points: [
-        "Scores land on a plain 0–100 scale.",
-        "Each signal shows its share of the score.",
-        "The same rubric applies to every business.",
+        "Generate fully responsive, personalized demo sites.",
+        "Split-screen editor to refine and tweak any section.",
+        "Fully SEO-optimized to rank locally upon delivery.",
       ],
     },
     {
       key: "drafting",
-      label: "Draft studio",
+      label: "Pitching",
       icon: "pen",
       heading:
-        "Drafts pages from verified facts and holds every one for human review.",
+        "Send the finished demo straight to their WhatsApp, powered by AI voice.",
       points: [
-        "One fenced generation step formats verified facts.",
-        "A claim firewall strips unearned praise on sight.",
-        "Every page moves through draft, review, approve.",
+        "Instant delivery of the finished pitch directly via WhatsApp.",
+        "Voice agents can call and talk to leads in their own language.",
+        "Skip the cold email and send them a product they can see.",
       ],
     },
     {
       key: "conversations",
-      label: "Conversations",
+      label: "Closing",
       icon: "chat",
       heading:
-        "Shares approved pages and keeps the replies coming in Gujarati and English.",
+        "Run automated campaigns and nurture the lead until they close.",
       points: [
-        "Replies come in Gujarati or English.",
-        "Answers draw only on approved, validated content.",
-        "Every conversation feeds the next round of growth.",
+        "Follow up with sequenced messages automatically.",
+        "End-to-end pipeline view of your leads.",
+        "Turn the pitch into a booked sales conversation.",
       ],
     },
   ],

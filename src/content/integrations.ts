@@ -1,8 +1,8 @@
 export const INTEGRATIONS = {
   eyebrow: "Plugs in",
   eyebrowGujarati: "જોડાણ",
-  titleLines: ["Meets the shop", "where it already is"],
-  lede: "Every layer of the journey — Discover through Grow — feeds the everyday surfaces a small shop already runs on.",
+  titleLines: ["The pipeline that plugs", "into the local internet"],
+  lede: "Every layer of the journey — Accounts through Leads — taps into the public and private surfaces you need to close deals.",
   hub: "cronify",
   tiles: [
     { key: "maps", label: "Map listings" },
